@@ -150,7 +150,7 @@
   <!-- 趣味 -->
   <div class="card">
     <h2>趣味</h2>
-    <p>普段はゲームやアニメを楽しみ、音楽を聴いたり楽器を弾くことがあります。暇なときはプログラミングや読書で過ごし、月イチで新しい場所や文化に触れる旅行をしてます。週イチで心地よい時間に散歩をしています。</p>
+    <p>普段はゲームをしたりアニメを鑑賞してます。気分で音楽を聴いたり楽器を弾くことがあります。暇なときはプログラミングや読書で過ごし、月イチで新しい場所や文化に触れる旅行をし、週イチで心地よい時間に散歩をしています。</p>
   </div>
   
   <!-- 使用デバイス -->
@@ -173,20 +173,140 @@
   </div>
 </div>
   
-  <!-- やりたいこと・好きなこと -->
+  <!-- 趣味 -->
   <div class="card">
-    <h2>やりたいこと・好きなこと</h2>
+    <h2>趣味</h2>
     <ul>
-      <li>日本一周・世界一周</li>
-      <li>ゲーム開発・音楽制作</li>
-      <li>キャンプ・登山・水泳・釣り</li>
-      <li>新しいことを学ぶ・スキル習得</li>
-      <li>心理学、法律学、哲学、歴史を学ぶ</li>
-      <li>知らない街で美味しいもの食べ飲み歩き</li>
+      <li>自分磨き</li>
+      <li>ジャーナル・日記</li>
+      <li>深夜徘徊・朝散歩</li>
+      <li>マインドフルネス瞑想</li>
+      <li>ゲーム・アニメ・漫画・読書</li>
+      <li>筋トレ・ランニング・スケボー</li>
     </ul>
   </div>
 
-  <!-- 日本全国の行きたい場所（1つだけ開くアコーディオン版） -->
+  <!-- やりたいこと -->
+<div class="card">
+  <h2 style="color:#00ffcc;">やりたいこと</h2>
+
+  <button class="accordion">①旅行系</button>
+  <div class="panel">
+    <ul>
+      <li>パワースポット巡り</li>
+      <li>日本一周・世界一周</li>
+      <li>絶景スポット</li>
+      <li>世界遺産の旅</li>
+      <li>聖地巡礼</li>
+      <li>海外旅行</li>
+      <li>遊園地</li>
+      <li>図書館</li>
+      <li>水族館</li>
+      <li>美術館</li>
+      <li>動物園</li>
+      <li>植物園</li>
+    </ul>
+  </div>
+
+  <button class="accordion">②アウトドア系</button>
+  <div class="panel">
+    <ul>
+      <li>バーベキュー</li>
+      <li>ピクニック</li>
+      <li>サイクリング</li>
+      <li>サーフィン</li>
+      <li>ダイビング</li>
+      <li>ハイキング</li>
+      <li>キャンプ</li>
+      <li>天体観測</li>
+      <li>海水浴</li>
+      <li>水泳</li>
+      <li>登山</li>
+      <li>釣り</li>
+    </ul>
+  </div>
+
+  <button class="accordion">③ライフスタイル系</button>
+  <div class="panel">
+    <ul>
+      <li>知らない街で食べ歩き</li>
+      <li>ゲーム開発・音楽制作</li>
+      <li>自転車旅・ドライブ・ツーリング</li>
+      <li>新しいことを学ぶ・スキル習得</li>
+      <li>心理学、法律学、哲学、歴史を学習</li>
+      <li>サウナ・温泉</li>
+      <li>猫カフェ</li>
+      <li>DIY</li>
+    </ul>
+  </div>
+
+  <button class="accordion">④イベント系</button>
+  <div class="panel">
+    <ul>
+      <li>花火大会</li>
+      <li>イルミネーション</li>
+      <li>花見スポット</li>
+      <li>紅葉名所</li>
+      <li>夏祭り</li>
+      <li>音楽ライブ</li>
+      <li>展示会</li>
+      <li>スポーツ大会</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+.accordion {
+  background-color: rgba(0,255,204,0.1);
+  color: #00ffcc;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  margin-bottom: 5px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.accordion:hover {
+  background-color: rgba(0,255,204,0.2);
+}
+.panel {
+  padding: 0 10px;
+  display: none;
+  background-color: rgba(255,255,255,0.05);
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.panel ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+.panel li {
+  margin: 6px 0;
+  color: #e0e0e0;
+}
+</style>
+
+<script>
+const acc = document.getElementsByClassName("accordion");
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    for (let j = 0; j < acc.length; j++) {
+      if (acc[j] !== this) {
+        acc[j].nextElementSibling.style.display = "none"; // 他を閉じる
+      }
+    }
+    const panel = this.nextElementSibling;
+    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+  });
+}
+</script>
+
+  <!-- 日本全国の行きたい場所 -->
 <div class="card">
   <h2>日本全国の行きたい場所</h2>
 
