@@ -4,16 +4,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== 全体スタイル ===== */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d0d0d;
+      color: #eaeaea;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #00ffcc;
+      margin-top: 40px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #ffffff;
+      border-left: 4px solid #00ffcc;
+      padding-left: 10px;
+      text-align: left;
+    }
+
+    /* ===== セクションカード ===== */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 25px;
+      margin: 30px auto;
+      max-width: 800px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      animation: fadeInUp 1s ease;
+    }
+
+    .card p, .card ul {
+      font-size: 1.05rem;
+      margin: 10px 0;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      margin: 8px 0;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "▹";
+      color: #00ffcc;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* ===== プロフィール専用 ===== */
+    .profile-card li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.05rem;
+    }
+
+    .profile-card strong {
+      color: #00ffcc;
+    }
+
+    /* ===== SNSリンク ===== */
+    .link-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .link-container a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .link-container a img {
+      width: 22px;
+      height: 22px;
+    }
+
+    .link-container a:hover {
+      background: #00ffcc33;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #00ffcc;
+    }
+
+    /* ===== アニメーション ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>My Profile</h1>
-  
+
+  <!-- 自己紹介 -->
   <div class="card">
     <h2>自己紹介</h2>
     <p>はじめまして、るーしーです。趣味や目標を書いてるので、よかったら見ていってください。</p>
   </div>
-  
+
+  <!-- プロフィール -->
   <div class="card profile-card">
     <h2>プロフィール</h2>
     <ul>
@@ -23,12 +146,14 @@
       <li><strong>MBTI：</strong> INTP-T</li>
     </ul>
   </div>
-  
+
+  <!-- 趣味 -->
   <div class="card">
     <h2>趣味</h2>
     <p>普段はゲームをしたりアニメを鑑賞してます。気分で音楽を聴いたり楽器を弾くことがあります。暇なときはプログラミングや読書で過ごし、月イチで新しい場所や文化に触れる旅行をし、週イチで心地よい時間に散歩をしています。</p>
   </div>
   
+  <!-- 使用デバイス -->
   <div class="card">
   <h2>使用デバイス</h2>
   <div class="device-container">
@@ -48,6 +173,7 @@
   </div>
 </div>
   
+  <!-- 好きなこと -->
   <div class="card">
     <h2>好きなこと</h2>
     <ul>
@@ -60,6 +186,7 @@
     </ul>
   </div>
 
+  <!-- やりたいこと -->
 <div class="card">
   <h2 style="color:#00ffcc;">やりたいこと</h2>
 
@@ -128,6 +255,58 @@
   </div>
 </div>
 
+<style>
+.accordion {
+  background-color: rgba(0,255,204,0.1);
+  color: #00ffcc;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  margin-bottom: 5px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.accordion:hover {
+  background-color: rgba(0,255,204,0.2);
+}
+.panel {
+  padding: 0 10px;
+  display: none;
+  background-color: rgba(255,255,255,0.05);
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.panel ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+.panel li {
+  margin: 6px 0;
+  color: #e0e0e0;
+}
+</style>
+
+<script>
+const acc = document.getElementsByClassName("accordion");
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    for (let j = 0; j < acc.length; j++) {
+      if (acc[j] !== this) {
+        acc[j].nextElementSibling.style.display = "none"; // 他を閉じる
+      }
+    }
+    const panel = this.nextElementSibling;
+    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+  });
+}
+</script>
+
+  <!-- 日本全国の行きたい場所 -->
 <div class="card">
   <h2>日本全国の行きたい場所</h2>
 
@@ -202,7 +381,47 @@
     </ul>
   </div>
 </div>
-  
+
+<style>
+.accordion {
+  background-color: rgba(0,255,204,0.1);
+  color: #00ffcc;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  margin-bottom: 5px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+.panel {
+  padding: 0 10px;
+  display: none;
+  background-color: rgba(255,255,255,0.05);
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+</style>
+
+<script>
+const acc = document.getElementsByClassName("accordion");
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    for (let j = 0; j < acc.length; j++) {
+      if (acc[j] !== this) {
+        acc[j].nextElementSibling.style.display = "none"; // 他を閉じる
+      }
+    }
+    const panel = this.nextElementSibling;
+    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+  });
+}
+</script>
+
+  <!-- 好きなアニメ -->
   <div class="card">
     <h2>好きなアニメ</h2>
     <ul>
@@ -216,7 +435,8 @@
       <li>ダンダダン</li>
     </ul>
   </div>
-  
+
+  <!-- 好きな漫画 -->
   <div class="card">
     <h2>好きな漫画</h2>
     <ul>
@@ -228,6 +448,7 @@
 
   <div class="card">
   <h2>今年の抱負・目標</h2>
+    <!-- 人脈面 -->
     <div class="card">
       <h3>人脈面</h3>
       <p>
@@ -237,6 +458,7 @@
       </p>
     </div>
     
+    <!-- 金銭面 -->
     <div class="card">
       <h3>金銭面</h3>
       <p>
@@ -244,7 +466,8 @@
         毎月1.5〜2万円以上の収入を達成できるよう取り組んでいます。
       </p>
     </div>
-    
+
+    <!-- 学習面 -->
     <div class="card">
       <h3>学習面</h3>
       <p>
@@ -253,7 +476,8 @@
         月に最低1冊の本を読む習慣を大切にします。
       </p>
     </div>
-    
+
+    <!-- 健康面 -->
     <div class="card">
       <h3>健康面</h3>
       <p>
@@ -264,7 +488,8 @@
 
   </div>
 </section>
-  
+
+  <!-- SNSリンク -->
   <div class="card">
     <h2>各SNSアカウント</h2>
     <div class="link-container">
