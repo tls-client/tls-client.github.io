@@ -128,58 +128,6 @@
   </div>
 </div>
 
-<style>
-.accordion {
-  background-color: rgba(0,255,204,0.1);
-  color: #00ffcc;
-  cursor: pointer;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  margin-bottom: 5px;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-.accordion:hover {
-  background-color: rgba(0,255,204,0.2);
-}
-.panel {
-  padding: 0 10px;
-  display: none;
-  background-color: rgba(255,255,255,0.05);
-  overflow: hidden;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-.panel ul {
-  margin: 10px 0;
-  padding-left: 20px;
-}
-.panel li {
-  margin: 6px 0;
-  color: #e0e0e0;
-}
-</style>
-
-<script>
-const acc = document.getElementsByClassName("accordion");
-for (let i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    for (let j = 0; j < acc.length; j++) {
-      if (acc[j] !== this) {
-        acc[j].nextElementSibling.style.display = "none"; // 他を閉じる
-      }
-    }
-    const panel = this.nextElementSibling;
-    panel.style.display = (panel.style.display === "block") ? "none" : "block";
-  });
-}
-</script>
-
-  <!-- 日本全国の行きたい場所 -->
 <div class="card">
   <h2>日本全国の行きたい場所</h2>
 
@@ -254,47 +202,7 @@ for (let i = 0; i < acc.length; i++) {
     </ul>
   </div>
 </div>
-
-<style>
-.accordion {
-  background-color: rgba(0,255,204,0.1);
-  color: #00ffcc;
-  cursor: pointer;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  margin-bottom: 5px;
-  font-weight: bold;
-  border-radius: 8px;
-}
-.panel {
-  padding: 0 10px;
-  display: none;
-  background-color: rgba(255,255,255,0.05);
-  overflow: hidden;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-</style>
-
-<script>
-const acc = document.getElementsByClassName("accordion");
-for (let i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    for (let j = 0; j < acc.length; j++) {
-      if (acc[j] !== this) {
-        acc[j].nextElementSibling.style.display = "none"; // 他を閉じる
-      }
-    }
-    const panel = this.nextElementSibling;
-    panel.style.display = (panel.style.display === "block") ? "none" : "block";
-  });
-}
-</script>
-
-  <!-- 好きなアニメ -->
+  
   <div class="card">
     <h2>好きなアニメ</h2>
     <ul>
@@ -308,8 +216,7 @@ for (let i = 0; i < acc.length; i++) {
       <li>ダンダダン</li>
     </ul>
   </div>
-
-  <!-- 好きな漫画 -->
+  
   <div class="card">
     <h2>好きな漫画</h2>
     <ul>
@@ -321,7 +228,6 @@ for (let i = 0; i < acc.length; i++) {
 
   <div class="card">
   <h2>今年の抱負・目標</h2>
-    <!-- 人脈面 -->
     <div class="card">
       <h3>人脈面</h3>
       <p>
@@ -331,7 +237,6 @@ for (let i = 0; i < acc.length; i++) {
       </p>
     </div>
     
-    <!-- 金銭面 -->
     <div class="card">
       <h3>金銭面</h3>
       <p>
@@ -339,8 +244,7 @@ for (let i = 0; i < acc.length; i++) {
         毎月1.5〜2万円以上の収入を達成できるよう取り組んでいます。
       </p>
     </div>
-
-    <!-- 学習面 -->
+    
     <div class="card">
       <h3>学習面</h3>
       <p>
@@ -349,8 +253,7 @@ for (let i = 0; i < acc.length; i++) {
         月に最低1冊の本を読む習慣を大切にします。
       </p>
     </div>
-
-    <!-- 健康面 -->
+    
     <div class="card">
       <h3>健康面</h3>
       <p>
@@ -361,8 +264,7 @@ for (let i = 0; i < acc.length; i++) {
 
   </div>
 </section>
-
-  <!-- SNSリンク -->
+  
   <div class="card">
     <h2>各SNSアカウント</h2>
     <div class="link-container">
