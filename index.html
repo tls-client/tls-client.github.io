@@ -4,139 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile</title>
-  <style>
-    /* ===== 全体スタイル ===== */
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0d0d0d;
-      color: #eaeaea;
-      margin: 0;
-      padding: 0;
-      line-height: 1.8;
-    }
-
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      color: #00ffcc;
-      margin-top: 40px;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      color: #ffffff;
-      border-left: 4px solid #00ffcc;
-      padding-left: 10px;
-      text-align: left;
-    }
-
-    /* ===== セクションカード ===== */
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 14px;
-      padding: 25px;
-      margin: 30px auto;
-      max-width: 800px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
-      animation: fadeInUp 1s ease;
-    }
-
-    .card p, .card ul {
-      font-size: 1.05rem;
-      margin: 10px 0;
-    }
-
-    .card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .card ul li {
-      margin: 8px 0;
-      padding-left: 28px;
-      position: relative;
-    }
-
-    .card ul li::before {
-      content: "▹";
-      color: #00ffcc;
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-    }
-
-    /* ===== プロフィール専用 ===== */
-    .profile-card li {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.05rem;
-    }
-
-    .profile-card strong {
-      color: #00ffcc;
-    }
-
-    /* ===== SNSリンク ===== */
-    .link-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .link-container a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.07);
-      color: #fff;
-      text-decoration: none;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    .link-container a img {
-      width: 22px;
-      height: 22px;
-    }
-
-    .link-container a:hover {
-      background: #00ffcc33;
-      transform: scale(1.05);
-      box-shadow: 0 0 12px #00ffcc;
-    }
-
-    /* ===== アニメーション ===== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>My Profile</h1>
-
-  <!-- 自己紹介 -->
+  
   <div class="card">
     <h2>自己紹介</h2>
     <p>はじめまして、るーしーです。趣味や目標を書いてるので、よかったら見ていってください。</p>
   </div>
-
-  <!-- プロフィール -->
+  
   <div class="card profile-card">
     <h2>プロフィール</h2>
     <ul>
@@ -146,14 +23,12 @@
       <li><strong>MBTI：</strong> INTP-T</li>
     </ul>
   </div>
-
-  <!-- 趣味 -->
+  
   <div class="card">
     <h2>趣味</h2>
     <p>普段はゲームをしたりアニメを鑑賞してます。気分で音楽を聴いたり楽器を弾くことがあります。暇なときはプログラミングや読書で過ごし、月イチで新しい場所や文化に触れる旅行をし、週イチで心地よい時間に散歩をしています。</p>
   </div>
   
-  <!-- 使用デバイス -->
   <div class="card">
   <h2>使用デバイス</h2>
   <div class="device-container">
@@ -173,7 +48,6 @@
   </div>
 </div>
   
-  <!-- 好きなこと -->
   <div class="card">
     <h2>好きなこと</h2>
     <ul>
@@ -186,7 +60,6 @@
     </ul>
   </div>
 
-  <!-- やりたいこと -->
 <div class="card">
   <h2 style="color:#00ffcc;">やりたいこと</h2>
 
