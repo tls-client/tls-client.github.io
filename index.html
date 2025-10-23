@@ -1,26 +1,100 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Homepage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rucy Homepage</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
 </head>
 <body>
-  <header>
-    <div class="menu-left">
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-    </div>
-    <div class="menu-center">
-      <a href="#">Home</a>
-      <a href="#search">Search</a>
-      <a href="#blog">Blog</a>
-    </div>
-    <div class="menu-right">
-      <button onclick="toggleTheme()">🌗</button>
-    </div>
-  </header>
+<header class="header">
+  <div class="left">
+    <button id="hamburger" class="hamburger">☰</button>
+  </div>
+  <nav class="nav-center">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#search" class="nav-link">Search</a>
+    <a href="#blog" class="nav-link">Blog</a>
+  </nav>
+  <div class="right">
+    <button id="theme-toggle" class="theme-toggle">🌓</button>
+  </div>
+</header>
 
-  <nav id="sidebar">
-    <input type="text" placeholder="Search..." style="width:100%;padding:5px;">
+<aside class="sidebar" id="sidebar">
+  <input type="text" placeholder="検索..." class="search-bar">
+  <ul>
+    <li><a href="#about">About Me</a></li>
+    <li><a href="#blog">Blog</a></li>
+  </ul>
+  <div id="about" class="about-section">
     <h2>About Me</h2>
-    <a href="#profile
+    <ul class="about-menu">
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#hobby">Hobby</a></li>
+      <li><a href="#life">Life</a></li>
+      <li><a href="#device">Device</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#social">Social Link</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</aside>
+
+<main>
+  <section id="home">
+    <h1>Welcome to My Page</h1>
+    <div class="home-content">
+      <h2>About Me</h2>
+      <p>簡単な自己紹介や趣味など。</p>
+      <h2>Blog</h2>
+      <p>最近の投稿はこちら。</p>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h1>Blog</h1>
+    <div class="blog-list">
+      <div class="blog-card">
+        <img src="https://via.placeholder.com/200" alt="thumbnail">
+        <div class="blog-info">
+          <h3>ブログタイトル1</h3>
+          <p class="meta">2025-10-22 | #日記</p>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="https://via.placeholder.com/200" alt="thumbnail">
+        <div class="blog-info">
+          <h3>ブログタイトル2</h3>
+          <p class="meta">2025-10-20 | #勉強</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories">
+    <h2>Categories</h2>
+    <p>プロフィール、趣味、日記・記事、筋トレ・散歩、勉強・読書、計画・目標、アニメ・漫画、ゲーム、アプリ、ニュース、瞑想、学校生活、健康、家族、生活習慣、精神疾患、自己分析、自分磨き、ネット活動、人生論、暮らし、界隈、お金</p>
+  </section>
+
+  <section id="social">
+    <h2>Social Links</h2>
+    <ul class="social-links">
+      <li><a href="https://dc.gg/ctkp">Discord (雑談鯖)</a></li>
+      <li><a href="https://dc.gg/aarr">Discord (shop鯖)</a></li>
+      <li><a href="https://dc.gg/dpko">Discord (nsfw鯖)</a></li>
+      <li><a href="https://twitter.com/rucyj">Twitter (本垢)</a></li>
+      <li><a href="https://twitter.com/hisamex">Twitter (相互)</a></li>
+      <li><a href="https://twitter.com/razbeu">Twitter (避難)</a></li>
+      <li><a href="https://tiktok.com/@ragnyard">TikTok</a></li>
+      <li><a href="https://github.com/tls-client">GitHub</a></li>
+      <li><a href="https://t.me/rucyontop">Telegram</a></li>
+      <li><a href="https://note.com/rucybook">Note</a></li>
+      <li><a href="https://soundcloud.com/rucygod">SoundCloud</a></li>
+      <li><a href="https://sptfy.in/rucy">Spotify</a></li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
