@@ -1,39 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Rucyのホームページ</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>るーしー / Personal</title>
+  <meta name="description" content="るーしーのポートフォリオ・ブログ・リンク集" />
+  <style>
+    :root{
+      --bg:#0b0b0b; --fg:#f7f7f7; --muted:#9a9a9a; --accent:#ffffff;
+      --card:#111;
+      --radius:14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial;
+    }
+    [data-theme="light"]{
+      --bg:#ffffff; --fg:#111111; --muted:#666; --accent:#000;
+      --card:#f5f5f5;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
+    header{position:sticky;top:0;backdrop-filter:blur(6px);background:linear-gradient(rgba(0,0,0,0.25),transparent);z-index:40}
+    .bar{display:flex;align-items:center;gap:12px;padding:10px 14px}
+    .left,.center,.right{display:flex;align-items:center}
+    .left{flex:0}
+    .center{flex:1;justify-content:center}
+    .right{flex:0;gap:8px}
+    .navlink{padding:6px 10px;border-radius:10px;font-weight:600}
+    .navlink.active{outline:2px solid var(--fg);}button.icon{background:none;border:none;color:var(--fg);font-size:20px;padding:8px;border-radius:10px}
+.search{display:flex;align-items:center;background:var(--card);padding:6px;border-radius:12px;gap:8px}
+.search input{background:transparent;border:0;outline:0;color:var(--fg);width:120px}
+.container{max-width:900px;margin:18px auto;padding:0 14px}
+.litlink{display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;border-radius:16px;background:transparent}
+.avatar{width:110px;height:110px;border-radius:999px;background:linear-gradient(180deg,#222,#111);display:flex;align-items:center;justify-content:center;font-size:40px}
+h1.name{margin:0}
+.links{display:flex;flex-direction:column;gap:8px;width:100%;max-width:420px;margin-top:6px}
+.linkbtn{padding:12px;border-radius:12px;background:var(--card);text-decoration:none;color:var(--fg);display:flex;justify-content:space-between;align-items:center;font-weight:600}
+
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:820px){.grid{grid-template-columns:1fr 320px}}
+
+.card{background:var(--card);padding:12px;border-radius:12px}
+.projects .item,.blog .post{border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:10px}
+.projects .item a{color:var(--fg);text-decoration:none;font-weight:700}
+
+.blog .post{display:flex;gap:10px;align-items:center}
+.thumb{width:96px;height:64px;border-radius:8px;background:#222;flex-shrink:0}
+.meta{font-size:12px;color:var(--muted)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;padding:4px 8px;border-radius:999px;background:transparent;border:1px solid var(--muted)}
+
+/* drawer */
+.drawer{position:fixed;left:0;top:0;bottom:0;width:84%;max-width:360px;background:var(--bg);box-shadow:4px 0 24px rgba(0,0,0,0.5);transform:translateX(-112%);transition:transform .28s;z-index:60;padding:18px}
+.drawer.open{transform:translateX(0)}
+.drawer .toc{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+a.small{color:var(--fg);text-decoration:none;padding:8px;border-radius:8px}
+
+footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+
+/* utilities */
+.row{display:flex;gap:8px;align-items:center}
+.muted{color:var(--muted)}
+.pill{padding:6px 8px;border-radius:999px;border:1px solid var(--muted);font-size:13px}
+
+  </style>
 </head>
 <body>
-  <header class="header">
-    <button class="hamburger" id="hamburger">&#9776;</button>
-    <nav class="nav">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#blog" class="nav-link">Blog</a>
-    </nav>
-    <button class="theme-toggle" id="theme-toggle">🌓</button>
-  </header>
-  
-  <aside class="sidebar" id="sidebar">
-    <button class="close-btn" id="close-btn">&times;</button>
-    <input type="text" class="search-bar" placeholder="検索...">
-    <a href="#about" class="sidebar-link">About Me</a>
-    <a href="#blog" class="sidebar-link">Blog</a>
-    <!-- ... 必要項目や目次はここに追加 ... -->
-  </aside>
-
-  <main>
-    <section id="home">
-      <h1>About Me</h1>
-      <p>性別・年齢・趣味・生活のルーティンや強み・弱み・価値観・今年の抱負・人生観などを簡潔に掲載。</p>
-      <h2>Blog</h2>
-      <p>新着記事やおすすめ内容を簡単に表示。</p>
+  <header>
+    <div class="bar container">
+      <div class="left">
+        <button id="hamburger" class="icon" aria-label="menu">☰</button>
+      </div>
+      <div class="center">
+        <a class="navlink active" data-view="home">Home</a>
+        <a class="navlink" data-view="projects">Project</a>
+        <a class="navlink" data-view="blog">Blog</a>
+      </div>
+      <div class="right">
+        <div class="search" id="searchBox">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input id="search" placeholder="Search..." />
+        </div>
+        <button id="themeBtn" class="icon" aria-label="theme">🌓</button>
+      </div>
+    </div>
+  </header>  <aside id="drawer" class="drawer" aria-hidden="true">
+    <div class="row"><strong>メニュー</strong><div style="flex:1"></div><button id="closeDrawer" class="icon">✕</button></div>
+    <div style="margin-top:12px">
+      <div class="card">
+        <input id="drawerSearch" placeholder="検索" style="width:100%;padding:8px;border-radius:10px;background:transparent;border:1px solid var(--muted);color:var(--fg)" />
+      </div>
+      <nav class="toc">
+        <a href="#about" class="small">About Me (自己紹介)</a>
+        <a href="#blogIndex" class="small">Blog (日記や記事)</a>
+      </nav>
+    </div>
+    <section id="about" style="margin-top:18px">
+      <h3>About Me - 目次</h3>
+      <div class="toc">
+        <a class="small" href="#profile">Profile (プロフィール)</a>
+        <a class="small" href="#hobby">Hobby (趣味)</a>
+        <a class="small" href="#life">Life (人生 / ルーティン)</a>
+        <a class="small" href="#device">Device (使用デバイス)</a>
+        <a class="small" href="#skills">Skills (得意な言語)</a>
+        <a class="small" href="#socials">Social Link (各SNS)</a>
+        <a class="small" href="#contact">Contact (連絡先)</a>
+      </div>
     </section>
-    <!-- ブログ一覧やサムネイル・カテゴリなどはここに追加 -->
-  </main>
+  </aside>  <main class="container">
+    <div id="home" class="view">
+      <section class="litlink">
+        <div class="avatar">る</div>
+        <h1 class="name">るーしー（Rucy）</h1>
+        <p class="muted">開発者 / ブロガー / 趣味: 音楽・ゲーム・読書</p>
+        <div class="links" id="linkList">
+          <!-- カスタマイズ可能なリンク -->
+        </div>
+      </section>
+    </div><div id="mainGrid" class="grid" style="margin-top:14px">
+  <section class="card projects" id="projects">
+    <h2>Projects</h2>
+    <div id="projectList" style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+      <!-- projects populated by JS -->
+    </div>
+  </section>
 
-  <script src="script.js"></script>
-</body>
+  <aside class="card" style="height:fit-content">
+    <h3>Blog Index</h3>
+    <div id="blogIndex">
+      <!-- archives & categories -->
+      <div style="margin-top:8px">
+        <strong>Archives</strong>
+        <div id="archives" style="margin-top:6px"></div>
+      </div>
+      <div style="margin-top:12px">
+        <strong>Categories</strong>
+        <div id="categories" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"></div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<section id="blog" class="card blog" style="margin-top:12px;display:none">
+  <h2>Blog</h2>
+  <div id="posts" style="display:flex;flex-direction:column;gap:10px;margin-top:10px"></div>
+</section>
+
+<section id="aboutFull" class="card" style="margin-top:12px;display:none">
+  <h2>About Me</h2>
+  <section id="profile">
+    <h3>Profile</h3>
+    <p>ここに性別、年齢、自己紹介を書いてください。テンプレート: "性別: ○○ / 年齢: ○○ / 居住地: ○○ / 簡単な自己紹介..."</p>
+  </section>
+  <section id="hobby"><h3>Hobby</h3><p>趣味: 音楽制作、ゲーム、読書、散歩など...</p></section>
+  <section id="life"><h3>Life / ルーティン</h3><p>日々のルーティンや1日の過ごし方をここに書いてください。</p></section>
+  <section id="device"><h3>Device</h3><p>使用デバイス: スマホ / PC / 周辺機器 等</p></section>
+  <section id="skills"><h3>Skills</h3><p>得意言語やフレームワークを列挙してください。例: JavaScript, Python, Node.js, Rust</p></section>
+  <section id="socials"><h3>Social Link</h3><div id="socialList"></div></section>
+  <section id="contact"><h3>Contact</h3><p>連絡先や問い合わせフォームのリンクを設置してください。</p></section>
+</section>
+
+  </main>  <footer>
+    © <span id="year"></span> るーしー — Built with ❤️
+  </footer>  <script>
+    // --- Data: 編集箇所はこのブロック ---
+    const SOCIALS = [
+      {title:'Discord (雑談)', url:'https://dc.gg/ctkp'},
+      {title:'Discord (shop)', url:'https://dc.gg/aarr'},
+      {title:'Discord (nsfw)', url:'https://dc.gg/dpko'},
+      {title:'Twitter (本垢)', url:'https://twitter.com/rucyj'},
+      {title:'Twitter (相互)', url:'https://twitter.com/hisamex'},
+      {title:'Twitter (避難)', url:'https://twitter.com/razbeu'},
+      {title:'TikTok', url:'https://tiktok.com/@ragnyard'},
+      {title:'GitHub', url:'https://github.com/tls-client'},
+      {title:'Telegram', url:'https://t.me/rucyontop'},
+      {title:'Note', url:'https://note.com/rucybook'},
+      {title:'SoundCloud', url:'https://soundcloud.com/rucygod'},
+      {title:'Spotify', url:'https://sptfy.in/rucy'}
+    ];
+
+    const PROJECTS = [
+      {title:'TLS Client Tools', desc:'各SNSアプリ向け便利ツール集', url:'https://github.com/tls-client'},
+      {title:'Clipper', desc:'投稿のテンプレ作成ツール', url:'#'},
+    ];
+
+    const POSTS = [
+      {id:1,title:'初めての投稿',thumb:'',date:'2025-10-01',tags:['日記','自己分析'],excerpt:'はじめまして。'},
+      {id:2,title:'開発メモ: SNS用ツール',thumb:'',date:'2025-09-10',tags:['アプリ','開発']}
+    ];
+
+    const CATEGORIES = ['プロフィール','趣味','日記・記事','筋トレ・散歩','勉強・読書','計画・目標','アニメ・漫画','ゲーム','アプリ','ニュース','瞑想','学校生活','健康','家族','生活習慣','精神疾患','自己分析','自分磨き','ネット活動','人生論','暮らし','界隈','お金'];
+    // --- end editable ---
+
+    // Utilities
+    const qs = s=>document.querySelector(s);
+    const qsa = s=>document.querySelectorAll(s);
+
+    // populate socials in Home link list and About
+    const linkList = qs('#linkList');
+    SOCIALS.forEach(s=>{
+      const a = document.createElement('a'); a.className='linkbtn'; a.href=s.url; a.target='_blank'; a.rel='noopener';
+      a.innerHTML = `<span>${s.title}</span><span class="muted">↗</span>`;
+      linkList.appendChild(a);
+    });
+
+    const socialList = qs('#socialList');
+    SOCIALS.forEach(s=>{ const d=document.createElement('div'); d.innerHTML=`<a href="${s.url}" target="_blank">${s.title}</a>`; socialList.appendChild(d); });
+
+    // projects
+    const projectList = qs('#projectList');
+    PROJECTS.forEach(p=>{
+      const el = document.createElement('div'); el.className='item'; el.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><div><a href="${p.url}" target="_blank">${p.title}</a><div class="muted" style="font-size:13px">${p.desc}</div></div><div><a class="pill" href="${p.url}" target="_blank">Use</a></div></div>`; projectList.appendChild(el);
+    });
+
+    // posts
+    const postsEl = qs('#posts');
+    POSTS.forEach(p=>{
+      const el = document.createElement('div'); el.className='post';
+      el.innerHTML = `<div class="thumb"></div><div style="flex:1"><div style="font-weight:700">${p.title}</div><div class="meta" style="margin-top:6px"><span>${p.date}</span> <span style="margin-left:8px">${p.excerpt||''}</span></div><div class="tags" style="margin-top:8px">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>`;
+      postsEl.appendChild(el);
+    });
+
+    // archives & categories
+    const archivesEl = qs('#archives'); POSTS.forEach(p=>{const a=document.createElement('div');a.innerHTML=`<a href="#post-${p.id}">${p.date} — ${p.title}</a>`; archivesEl.appendChild(a)});
+    const catsEl = qs('#categories'); CATEGORIES.forEach(c=>{const b=document.createElement('div');b.className='tag';b.textContent=c;catsEl.appendChild(b)});
+
+    // view switching
+    qsa('.navlink').forEach(n=>n.addEventListener('click',e=>{qsa('.navlink').forEach(x=>x.classList.remove('active')); e.target.classList.add('active'); const view=e.target.dataset.view; showView(view);}));
+    function showView(v){
+      qs('#home').style.display = v==='home'? 'block':'none';
+      qs('#projects').style.display = v==='projects'? 'block':'block'; // projects always visible as left column
+      qs('#blog').style.display = v==='blog'? 'block':'none';
+      qs('#aboutFull').style.display = v==='about'? 'block':'none';
+    }
+
+    // drawer
+    const drawer = qs('#drawer'); qs('#hamburger').addEventListener('click',()=>{drawer.classList.add('open');drawer.setAttribute('aria-hidden','false')}); qs('#closeDrawer').addEventListener('click',()=>{drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')});
+
+    // search (simple client-side filter)
+    const searchInput = qs('#search'); searchInput.addEventListener('input',()=>{const q=searchInput.value.toLowerCase(); filterLinks(q);} )
+    function filterLinks(q){ const items = [...qsa('#linkList .linkbtn'), ...qsa('#projectList .item')]; items.forEach(it=>{it.style.display = (it.textContent.toLowerCase().includes(q))? 'flex':'none'}); }
+
+    // theme
+    const themeBtn = qs('#themeBtn'); const root = document.documentElement; const stored = localStorage.getItem('theme'); if(stored) root.setAttribute('data-theme',stored); else root.setAttribute('data-theme','dark');
+    themeBtn.addEventListener('click',()=>{const cur = root.getAttribute('data-theme'); const next = cur==='dark'?'light':'dark'; root.setAttribute('data-theme',next); localStorage.setItem('theme',next);});
+
+    // year
+    qs('#year').textContent = new Date().getFullYear();
+
+    // initial view
+    showView('home');
+
+    // keyboard: Esc closes drawer
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') drawer.classList.remove('open')});
+
+    // simple deep links from drawer
+    qsa('#drawer a').forEach(a=>a.addEventListener('click',()=>drawer.classList.remove('open')));
+
+    // small accessibility
+    // focus styles
+    document.addEventListener('keydown',function(e){ if(e.key==='Tab') document.body.classList.add('show-focus'); });
+  </script></body>
 </html>
