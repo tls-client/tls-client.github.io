@@ -1,0 +1,47 @@
+/* ===============================
+   Global Base
+   =============================== */
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #000000;
+  --text-light: #000000;
+  --text-dark: #ffffff;
+  --border-light: #e0e0e0;
+  --border-dark: #222222;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", "Meiryo", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* ===============================
+   Header
+   =============================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+  background-color: inherit;
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+[data-theme="dark"] header {
+  border-color: var(--border-dark);
+}
+
+/* ===============================
+   Navigation Bar (Top)
+   =================
