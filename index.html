@@ -1,125 +1,95 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Home</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Homepage</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Meiryo, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #222222;
+      --accent: #007aff;
+    }
+    [data-theme="dark"] {
+      --bg: #121212;
+      --text: #f0f0f0;
+      --accent: #4dabf7;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+      position: sticky;
+      top: 0;
+      background-color: var(--bg);
+      z-index: 10;
+    }
+    .menu-left {
+      display: flex;
+      align-items: center;
+    }
+    .hamburger {
+      font-size: 25px;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+    .menu-center a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .menu-right button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: var(--text);
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 250px;
+      height: 100%;
+      background-color: var(--bg);
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      padding: 15px;
+      transition: left 0.3s;
+      overflow-y: auto;
+      z-index: 20;
+    }
+    nav.open { left: 0; }
+    nav h2 { font-size: 18px; margin-top: 20px; }
+    nav a { display: block; margin: 8px 0; color: var(--text); text-decoration: none; }
+    main { padding: 20px; }
+  </style>
 </head>
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#project">Project</a></li>
-        </ul>
-    </nav>
-    <h1>Home</h1>
-</header>
-
-<main>
-<section id="home">
-    <h2>自己紹介</h2>
-    <p>はじめまして、るーしーです。趣味や目標を書いてるので、よかったら見ていってください。</p>
-
-    <h2>プロフィール</h2>
-    <ul>
-        <li><strong>職業：</strong>学生</li>
-        <li><strong>性別：</strong>男性</li>
-        <li><strong>場所：</strong>千葉県</li>
-        <li><strong>MBTI：</strong>INTP-T</li>
-    </ul>
-
-    <h2>趣味</h2>
-    <p>普段はゲームをしたりアニメを鑑賞してます。気分で音楽を聴いたり楽器を弾くことがあります。暇なときはプログラミングや読書で過ごし、月イチで新しい場所や文化に触れる旅行をし、週イチで心地よい時間に散歩をしています。</p>
-
-    <h2>使用デバイス</h2>
-    <ul>
-        <li>Galaxy S25（メイン）</li>
-        <li>Google Pixel 9 Pro（サブ）</li>
-        <li>Sony WF-1000XM5</li>
-        <li>サンワダイレクト L字デスク（白）</li>
-        <li>エルゴトロン デュアル（白）</li>
-        <li>BenQ ScreenBar Pro（シルバー）</li>
-        <li>GigaCrysta 24.5インチ 240hz（メイン・サブ）</li>
-        <li>Logicool G913 TKL（白）</li>
-        <li>Logicool G Pro X Superlight（白）</li>
-        <li>Artisan Ninja FX ゼロ XSOFT（黒）</li>
-        <li>imation Charging Dock RGB（白）</li>
-        <li>HyperX Quadcast S（白）</li>
-        <li>Creative Pebble V3（白）</li>
-        <li>Elgato HD60 S</li>
-    </ul>
-
-    <h2>好きなアニメ</h2>
-    <ul>
-        <li>ようこそ実力至上主義の教室へ</li>
-        <li>HUNTER × HUNTER</li>
-        <li>呪術廻戦</li>
-        <li>進撃の巨人</li>
-        <li>東京喰種</li>
-        <li>無職転生</li>
-        <li>デスノート</li>
-        <li>ダンダダン</li>
-    </ul>
-
-    <h2>好きな漫画</h2>
-    <ul>
-        <li>十字架のろくにん</li>
-        <li>ワンピース</li>
-        <li>鬼滅の刃</li>
-    </ul>
-
-    <h2>今年の抱負・目標</h2>
-    <div class="card">
-        <h3>人脈面</h3>
-        <p>twitterとdiscordで万垢・万鯖を獲得することやフレンド1000人達成することを目指してます。YouTube・Bluesky・TikTokでは数千規模のフォロワーを確保したり、多くの自鯖・管轄鯖を所持していくことも目標です。</p>
+  <header>
+    <div class="menu-left">
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
     </div>
-    <div class="card">
-        <h3>金銭面</h3>
-        <p>毎日500円以上を稼ぎ、毎週3,000〜5,000円を安定的に確保し、毎月1.5〜2万円以上の収入を達成できるよう取り組んでいます。</p>
+    <div class="menu-center">
+      <a href="#">Home</a>
+      <a href="#search">Search</a>
+      <a href="#blog">Blog</a>
     </div>
-    <div class="card">
-        <h3>学習面</h3>
-        <p>特定の技術資格を3ヶ月以内に取得し、半年後までに専門分野の知識を習得することを目指してます。また、平日は1時間の自習時間を確保し、毎日10分の漢字練習を続け、月に最低1冊の本を読む習慣を大切にします。</p>
+    <div class="menu-right">
+      <button onclick="toggleTheme()">🌗</button>
     </div>
-    <div class="card">
-        <h3>健康面</h3>
-        <p>生活リズムを整えてバランスの取れた食事と適度な運動を心がけながら、心身の健康を維持していきます。</p>
-    </div>
+  </header>
 
-    <h2>各SNSアカウント</h2>
-    <ul>
-        <li><a href="https://dsc.gg/teamhacker">Discord</a></li>
-        <li><a href="https://twitter.com/rucyj">Twitter (本垢)</a></li>
-        <li><a href="https://twitter.com/ragnyard">Twitter (相互)</a></li>
-        <li><a href="https://twitter.com/razbeu">Twitter (避難)</a></li>
-        <li><a href="https://tiktok.com/@ragnyard">TikTok</a></li>
-        <li><a href="https://github.com/tls-client">GitHub</a></li>
-        <li><a href="https://t.me/rucyontop">Telegram</a></li>
-        <li><a href="https://note.com/aoi453">Note</a></li>
-        <li><a href="https://soundcloud.com/rucygod">SoundCloud</a></li>
-        <li><a href="https://sptfy.in/rucy">Spotify</a></li>
-    </ul>
-</section>
-
-<section id="project">
-    <h2>Project</h2>
-    <ul>
-        <li><a href="https://tls-client.github.io/sub/">スマホ向け直感的に扱いやすい汎用的な荒らしツール</a></li>
-        <li><a href="https://tls-client.github.io/arashi-tool/">指定トークンからどの鯖を攻撃するか操作できる自由度が高い荒らしツール</a></li>
-        <li><a href="https://tls-client.github.io/mass-report/">完全自動大量通報ツール</a></li>
-        <li><a href="https://tls-client.github.io/webhook-spammer/">webhook荒らしツール</a></li>
-        <li><a href="https://tls-client.github.io/group-leaver/">自動dmグループ退出ツール</a></li>
-        <li><a href="https://tls-client.github.io/token-checker/">トークンの生存確認ツール</a></li>
-        <li><a href="https://tls-client.github.io/dm-tool/">自動dmグループ荒らしツール</a></li>
-        <li><a href="https://tls-client.github.io/bot-tool/">通常のbotをweb側から操作できるツール</a></li>
-        <li><a href="https://github.com/tls-client/discord-fast-message">秒間30メッセージのgo言語荒らしツール</a></li>
-        <li><a href="https://tls-client.github.io/discord-invite-spoofer/">招待リンクをバニティとして生成できるしなりすますことも可能なツール</a></li>
-    </ul>
-</section>
-</main>
-
-<script src="script.js"></script>
-</body>
-</html>
+  <nav id="sidebar">
+    <input type="text" placeholder="Search..." style="width:100%;padding:5px;">
+    <h2>About Me</h2>
+    <a href="#profile
