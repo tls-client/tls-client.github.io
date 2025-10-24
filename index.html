@@ -1,65 +1,165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>るーしー | Developer & Blogger</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="assets/script.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>るーしー — Developer · Blogger</title>
+  <meta name="description" content="るーしーのホームページ（開発者・ブロガー）" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="left">
-      <button id="menu-toggle" class="icon-btn">☰</button>
-    </div>
-    <div class="center">
-      <nav class="nav">
+  <div id="app" class="site" data-theme="dark">
+    <header class="topbar">
+      <button id="hambBtn" class="icon icon-hamburger" aria-label="menu">
+        <!-- simple line hamburger -->
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M3 7h18M3 12h18M3 17h18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <nav class="topnav" aria-label="primary">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="project.html" class="nav-link">Project</a>
         <a href="blog.html" class="nav-link">Blog</a>
       </nav>
-    </div>
-    <div class="right">
-      <button id="search-toggle" class="icon-btn"><i class="icon-search"></i></button>
-      <button id="theme-toggle" class="icon-btn"><i class="icon-theme"></i></button>
-    </div>
-  </header>
 
-  <div id="search-bar" class="search-bar hidden">
-    <input type="text" placeholder="検索..." />
+      <div class="right-controls">
+        <button id="searchBtn" class="icon icon-search" aria-label="search">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="11" cy="11" r="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 21l-4.5-4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button id="themeBtn" class="icon icon-theme" aria-label="theme">
+          <svg id="iconSun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4 4l1.5 1.5M18.5 18.5L20 20M2 12h2M20 12h2M4 20l1.5-1.5M18.5 5.5L20 4"/>
+          </svg>
+          <svg id="iconMoon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none">
+            <path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- search collapsed -->
+    <div id="searchBar" class="searchbar hidden">
+      <input id="searchInput" placeholder="検索" />
+      <button id="closeSearch" class="btn small">✕</button>
+    </div>
+
+    <!-- side menu (partial overlay, not full-cover) -->
+    <aside id="sideMenu" class="side-menu" aria-hidden="true">
+      <div class="side-head">
+        <strong>Menu</strong>
+        <button id="closeSide" class="btn small">✕</button>
+      </div>
+
+      <div class="side-block">
+        <div class="side-item">
+          <label class="side-label">Search</label>
+          <input id="sideSearch" placeholder="検索" />
+        </div>
+
+        <div class="side-item">
+          <label class="side-label">About Me</label>
+          <nav class="side-links">
+            <a href="about.html#profile">Profile</a>
+            <a href="about.html#hobby">Hobby</a>
+            <a href="about.html#life">Life</a>
+            <a href="about.html#device">Device</a>
+            <a href="about.html#skills">Skills</a>
+            <a href="about.html#social">Social Link</a>
+            <a href="about.html#contact">Contact</a>
+          </nav>
+        </div>
+
+        <div class="side-item">
+          <label class="side-label">Projects</label>
+          <nav class="side-links" id="sideProjects">
+            <!-- populated by JS from project list -->
+          </nav>
+        </div>
+
+        <div class="side-item">
+          <label class="side-label">Blog</label>
+          <div id="sidePosts">
+            <!-- populated by JS from POSTS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="side-foot">© <span id="year1"></span> るーしー</div>
+    </aside>
+
+    <main class="main">
+      <section class="card hero">
+        <div class="avatar">
+          <img src="assets/img/profile.png" alt="るーしー" id="profileImg">
+        </div>
+        <h1 class="display-name">るーしー</h1>
+        <div class="subtitle">開発者・ブロガー</div>
+
+        <div class="sns-row" id="snsRow">
+          <!-- SVG icons rendered in HTML for natural look -->
+          <a class="sns" href="https://dc.gg/ctkp" target="_blank" aria-label="Discord">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7.5 9.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm9 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+          </a>
+          <a class="sns" href="https://twitter.com/rucyj" target="_blank" aria-label="X/Twitter">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M23 3a10.9 10.9 0 0 1-3.1 1.5A4.5 4.5 0 0 0 12 7.7v1A10.6 10.6 0 0 1 3 4s-4 9 5 13a11.6 11.6 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.1-.8A7.7 7.7 0 0 0 23 3z"/></svg>
+          </a>
+          <a class="sns" href="https://tiktok.com/@ragnyard" target="_blank" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3v12.5A4.5 4.5 0 1 1 6 9.5V7a6 6 0 0 0 3-4z"/></svg>
+          </a>
+          <a class="sns" href="https://github.com/tls-client" target="_blank" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.9 9.5.5.1.7-.2.7-.5v-1.8C8.7 18.6 8 17.8 8 17.8c-.4-1-.9-1.3-.9-1.3-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.8.9 2.2.7.1-.6.3-1 .6-1.2-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7.0-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 .8-.2 1.7-.3 2.6-.3s1.8.1 2.6.3c2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.6-4.5 5 .3.3.6.9.6 1.9v2.9c0 .3.2.6.7.5A10.01 10.01 0 0 0 22 12c0-5.5-4.5-10-10-10z"/></svg>
+          </a>
+          <a class="sns" href="https://note.com/rucybook" target="_blank" aria-label="Note">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h9l3 3v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- Projects preview -->
+      <section class="card section" id="projectsPreview">
+        <div class="section-head"><h3>Projects</h3></div>
+        <div class="proj-list" id="projList">
+          <!-- JS will render project cards -->
+        </div>
+      </section>
+
+      <!-- Player -->
+      <section class="card section player" id="playerCard">
+        <div class="player-left">
+          <button id="playBtn" class="btn play">▶</button>
+        </div>
+        <div class="player-right">
+          <div class="track-title" id="trackTitle">Lv.2 vision (feat. AssToro)</div>
+          <div class="track-artist" id="trackArtist">alouji</div>
+        </div>
+      </section>
+
+      <!-- Blog preview -->
+      <section class="card section" id="blogPreview">
+        <div class="section-head"><h3>Blog</h3></div>
+        <div id="posts" class="posts">
+          <!-- JS renders posts cards -->
+        </div>
+        <div class="see-more"><a href="blog.html">全て見る →</a></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="foot-inner">
+        <nav class="bottom-links">
+          <a href="index.html">Home</a>
+          <a href="project.html">Project</a>
+          <a href="blog.html">Blog</a>
+        </nav>
+        <div class="copyright">© <span id="year2"></span> るーしー</div>
+      </div>
+    </footer>
   </div>
 
-  <main class="home">
-    <img src="assets/icon.png" alt="るーしー" class="avatar" />
-    <h1 class="name">るーしー</h1>
-    <p class="role">開発者・ブロガー</p>
-
-    <div class="music-player">
-      <button id="play-btn" class="play-btn">▶</button>
-      <div class="music-info">
-        <p class="track">Lv.2 vision (feat. AssToro)</p>
-        <p class="artist">alouji</p>
-      </div>
-      <audio id="audio" src="music/Lv2vision.mp3"></audio>
-    </div>
-
-    <div class="social-links">
-      <a href="https://dc.gg/ctkp" target="_blank" class="social-icon discord">Discord</a>
-      <a href="https://twitter.com/rucyj" target="_blank" class="social-icon twitter">Twitter</a>
-      <a href="https://tiktok.com/@ragnyard" target="_blank" class="social-icon tiktok">TikTok</a>
-      <a href="https://github.com/tls-client" target="_blank" class="social-icon github">GitHub</a>
-      <a href="https://note.com/rucybook" target="_blank" class="social-icon note">Note</a>
-      <a href="https://soundcloud.com/rucygod" target="_blank" class="social-icon soundcloud">SoundCloud</a>
-      <a href="https://sptfy.in/rucy" target="_blank" class="social-icon spotify">Spotify</a>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <nav class="bottom-nav">
-      <a href="index.html">Home</a>
-      <a href="project.html">Project</a>
-      <a href="blog.html">Blog</a>
-    </nav>
-  </footer>
+  <script src="assets/js/script.js" defer></script>
 </body>
 </html>
