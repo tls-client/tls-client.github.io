@@ -1,219 +1,262 @@
-<!DOCTYPE html><html lang="ja">
+<!doctype html>
+
+<html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>るーしー | Developer & Blogger</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>るーしー — Developer · Blogger</title>
+  <meta name="description" content="るーしーのリンク・プロジェクト・ブログ" />
   <style>
-    :root {
-      --bg-color: #fff;
-      --text-color: #000;
-      --accent-color: #555;
+    /* ====== Base / Theme ====== */
+    :root{
+      --bg:#0b0b0b; --card:#141212; --muted:#bdbdbd; --text:#f6f6f6; --accentA: #b52b2b; --accentB:#7a0f0f;
+      --radius:14px; --gap:14px; --maxw:520px;
+      --glass: rgba(255,255,255,0.03);
+      --shadow: 0 6px 18px rgba(0,0,0,0.6);
     }
-    [data-theme='dark'] {
-      --bg-color: #111;
-      --text-color: #f0f0f0;
-      --accent-color: #888;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--bg-color);
-      border-bottom: 1px solid var(--accent-color);
-      padding: 0.5rem 1rem;
-      z-index: 1000;
-    }
-    .hamburger {
-      font-size: 1.4rem;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      cursor: pointer;
-    }
-    nav {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    .theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.4rem;
-      color: var(--text-color);
-    }
-    .search {
-      padding: 0.4rem;
-      border-radius: 5px;
-      border: 1px solid var(--accent-color);
-      background: transparent;
-      color: var(--text-color);
-    }
-    main {
-      padding-top: 70px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .icon-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-top: 1rem;
-    }
-    h1 {
-      margin: 0.5rem 0 0.2rem;
-      font-size: 1.6rem;
-    }
-    .role {
-      font-size: 1rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
-    .sns-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .sns-links a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 1.4rem;
-      transition: color 0.2s;
-    }
-    .sns-links a:hover {
-      color: var(--accent-color);
-    }
-    .menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      z-index: 900;
-    }
-    .side-menu {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: var(--bg-color);
-      padding: 1rem;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
-      transition: left 0.3s;
-      z-index: 1000;
-    }
-    .side-menu.open {
-      left: 0;
-    }
-    .menu-overlay.show {
-      display: block;
-    }
-    .side-menu h2 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-    .side-menu a {
-      display: block;
-      color: var(--text-color);
-      text-decoration: none;
-      margin-bottom: 0.8rem;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--accent-color);
-      padding: 1rem 0;
-    }
+    [data-theme='light']{ --bg:#fff; --card:#fbfbfb; --muted:#6b6b6b; --text:#111; --accentA:#7a1f1f; --accentB:#c13b3b; --glass: rgba(0,0,0,0.03); --shadow: 0 6px 18px rgba(0,0,0,0.08); }*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#000);color:var(--text);font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", sans-serif;-webkit-font-smoothing:antialiased}
+
+/* ====== Layout ====== */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:18px}
+header{position:sticky;top:0;z-index:50;padding:10px 6px 6px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.06))}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.left{display:flex;align-items:center;gap:10px}
+
+/* hamburger (simple & cool) */
+.hambtn{width:46px;height:46px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer;box-shadow:var(--shadow)}
+.hambtn svg{width:20px;height:20px;display:block}
+
+/* search icon -> expand */
+.searchWrap{position:relative}
+.searchIcon{width:46px;height:46px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+.searchBar{position:absolute;right:56px;top:0;height:46px;transform-origin:right center;transform:scaleX(0);opacity:0;background:var(--card);border-radius:10px;padding:8px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.04);transition:0.22s cubic-bezier(.2,.9,.3,1);}
+.searchBar.open{transform:scaleX(1);opacity:1}
+.searchBar input{background:transparent;border:0;outline:0;color:var(--text);width:160px}
+
+/* theme toggle */
+.themeBtn{width:46px;height:46px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+
+/* profile area */
+.hero{display:flex;flex-direction:column;align-items:center;gap:8px;padding:22px 8px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:var(--shadow);margin-top:8px}
+.avatar{width:118px;height:118px;border-radius:999px;overflow:hidden;border:4px solid rgba(255,255,255,0.06);background:#000;display:flex;align-items:center;justify-content:center}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+h1{margin:6px 0 0;font-size:20px;letter-spacing:0.6px}
+.sub{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* social icons row */
+.socials{display:flex;gap:10px;margin-top:12px}
+.sbtn{width:44px;height:44px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+/* separators */
+.sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);margin:16px 0;border-radius:4px}
+
+/* cards */
+.card{background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.01));padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow);margin-bottom:12px}
+.card .title{font-weight:700;margin-bottom:8px}
+
+/* projects */
+.projects{display:flex;flex-direction:column;gap:10px}
+.proj{display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+.proj:hover{transform:translateY(-4px);transition:transform .18s}
+.projIcon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.projTitle{flex:1}
+.proj a{color:var(--text);text-decoration:none}
+
+/* audio player */
+.playerWrap{display:flex;flex-direction:column;gap:8px}
+.controls{display:flex;align-items:center;gap:12px;justify-content:center}
+.playBtn{width:54px;height:54px;border-radius:999px;background:var(--accentA);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;border:none}
+.smallBtn{width:44px;height:44px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;color:var(--text)}
+.trackTitle{font-weight:600;text-align:center}
+
+/* responsive tweaks */
+@media (max-width:420px){.wrap{padding:12px} .searchBar input{width:120px} .projIcon{width:48px;height:48px} .avatar{width:100px;height:100px}}
+
+footer{margin:22px 0 48px;text-align:center;color:var(--muted);font-size:13px}
+
   </style>
 </head>
-<body>
-  <header>
-    <button class="hamburger" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#project">Project</a>
-      <a href="#blog">Blog</a>
-    </nav>
-    <div style="display:flex;align-items:center;gap:0.5rem;">
-      <input type="text" class="search" placeholder="Search" />
-      <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-sun"></i></button>
+<body data-theme="dark">
+  <div class="wrap">
+    <header>
+      <div class="nav">
+        <div class="left">
+          <button class="hambtn" id="hamb">
+            <!-- simple & cool hamburger -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18" /></svg>
+          </button>
+        </div><div style="display:flex;align-items:center;gap:8px">
+      <div class="searchWrap">
+        <div class="searchIcon" id="searchIcon" title="Search">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div class="searchBar" id="searchBar">
+          <input id="searchInput" placeholder="Search" />
+        </div>
+      </div>
+
+      <button class="themeBtn" id="themeBtn" aria-label="theme">
+        <!-- sun/moon vector; toggles by JS -->
+        <svg id="iconSun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" width="18" height="18" style="display:none" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
     </div>
-  </header>  <div class="menu-overlay" id="overlay"></div>
-  <div class="side-menu" id="sideMenu">
-    <h2>Menu</h2>
+  </div>
+</header>
+
+<!-- side menu -->
+<div id="overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:40"></div>
+<aside id="side" style="position:fixed;left:-320px;top:0;height:100%;width:300px;background:var(--card);padding:18px;z-index:45;transition:left .28s">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong>Menu</strong><button id="closeSide" style="background:none;border:0;color:var(--muted);cursor:pointer">✕</button></div>
+  <nav style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
     <a href="#about">About Me</a>
     <a href="#blog">Blog</a>
-  </div>  <main id="home">
-    <img src="your-icon.png" alt="icon" class="icon-img" />
-    <h1>るーしー</h1>
-    <div class="role">Developer & Blogger</div><div class="sns-links">
-  <a href="https://dc.gg/ctkp" title="Discord"><i class="fa-brands fa-discord"></i></a>
-  <a href="https://twitter.com/rucyj" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
-  <a href="https://tiktok.com/@ragnyard" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-  <a href="https://github.com/tls-client" title="GitHub"><i class="fa-brands fa-github"></i></a>
-  <a href="https://t.me/rucyontop" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-  <a href="https://note.com/rucybook" title="Note"><i class="fa-solid fa-book"></i></a>
-  <a href="https://soundcloud.com/rucygod" title="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
-  <a href="https://sptfy.in/rucy" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-</div>
+  </nav>
+</aside>
 
-  </main>  <section id="project" style="padding:1rem;text-align:center;">
-    <h2>Projects</h2>
-    <ul style="list-style:none;padding:0;">
-      <li><a href="https://tls-client.github.io/sub/">Sub Tool</a></li>
-      <li><a href="https://tls-client.github.io/arashi-tool/">Arashi Tool</a></li>
-      <li><a href="https://tls-client.github.io/mass-report/">Mass Report</a></li>
-      <li><a href="https://tls-client.github.io/webhook-spammer/">Webhook Spammer</a></li>
-      <li><a href="https://tls-client.github.io/group-leaver/">Group Leaver</a></li>
-      <li><a href="https://tls-client.github.io/token-checker/">Token Checker</a></li>
-      <li><a href="https://tls-client.github.io/dm-tool/">DM Tool</a></li>
-      <li><a href="https://tls-client.github.io/bot-tool/">Bot Tool</a></li>
-      <li><a href="https://github.com/tls-client/discord-fast-message">Discord Fast Message</a></li>
-      <li><a href="https://tls-client.github.io/discord-invite-spoofer/">Invite Spoofer</a></li>
-    </ul>
-  </section>  <footer>© 2025 るーしー</footer>  <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) document.documentElement.setAttribute('data-theme', currentTheme);
+<!-- hero -->
+<section class="hero card" id="home">
+  <div class="avatar">
+    <!-- Replace avatar.png with your uploaded image file (use same filename in repo) -->
+    <img src="avatar.png" alt="るーしーのアイコン" id="avatarImg">
+  </div>
+  <h1>るーしー</h1>
+  <div class="sub">開発者 · ブロガー</div>
 
-    themeToggle.addEventListener('click', () => {
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      themeToggle.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-    });
+  <div class="socials" id="socialRow">
+    <a class="sbtn" href="https://dc.gg/ctkp" title="Discord" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7.5 9.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm9 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg></a>
+    <a class="sbtn" href="https://twitter.com/rucyj" title="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.71v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+    <a class="sbtn" href="https://tiktok.com/@ragnyard" title="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 3v12.5A4.5 4.5 0 1 1 6 9.5V7a6 6 0 0 0 3-4z"/></svg></a>
+    <a class="sbtn" href="https://github.com/tls-client" title="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.9 9.5.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1-.9-1.3-.9-1.3-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.8.9 2.2.7.1-.6.3-1 .6-1.2-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 .8-.2 1.7-.3 2.6-.3s1.8.1 2.6.3c2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.6-4.5 5 .3.3.6.9.6 1.9v2.9c0 .3.2.6.7.5A10.01 10.01 0 0 0 22 12c0-5.5-4.5-10-10-10z"/></svg></a>
+    <a class="sbtn" href="https://t.me/rucyontop" title="Telegram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 3L3 10.5l4 1.5L8 18l2.5-1.2L21 3z"/></svg></a>
+  </div>
+</section>
 
-    const menuBtn = document.getElementById('menuBtn');
-    const sideMenu = document.getElementById('sideMenu');
+<div class="sep"></div>
+
+<!-- projects -->
+<section class="card projects" id="projects">
+  <div class="title">Projects</div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,var(--accentA),var(--accentB));color:#fff">SUB</div><div class="projTitle"><a href="https://tls-client.github.io/sub/" target="_blank" rel="noopener">sub</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#2b7ab5,#12597a);color:#fff">AR</div><div class="projTitle"><a href="https://tls-client.github.io/arashi-tool/" target="_blank" rel="noopener">arashi-tool</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#5a2b7a,#8a4bbf);color:#fff">MR</div><div class="projTitle"><a href="https://tls-client.github.io/mass-report/" target="_blank" rel="noopener">mass-report</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#7a7a2b,#bfb45a);color:#111">WB</div><div class="projTitle"><a href="https://tls-client.github.io/webhook-spammer/" target="_blank" rel="noopener">webhook-spammer</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#2b7a3a,#1b5f2a);color:#fff">GL</div><div class="projTitle"><a href="https://tls-client.github.io/group-leaver/" target="_blank" rel="noopener">group-leaver</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#7a2b2b,#b52b2b);color:#fff">TK</div><div class="projTitle"><a href="https://tls-client.github.io/token-checker/" target="_blank" rel="noopener">token-checker</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#2b4b7a,#26407a);color:#fff">DM</div><div class="projTitle"><a href="https://tls-client.github.io/dm-tool" target="_blank" rel="noopener">dm-tool</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#2b2b7a,#4b4bbf);color:#fff">BT</div><div class="projTitle"><a href="https://tls-client.github.io/bot-tool/" target="_blank" rel="noopener">bot-tool</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#333333,#555555);color:#fff">DF</div><div class="projTitle"><a href="https://github.com/tls-client/discord-fast-message" target="_blank" rel="noopener">discord-fast-message</a></div><div>→</div></div>
+  <div class="proj"><div class="projIcon" style="background:linear-gradient(135deg,#7a2b6b,#c14bbf);color:#fff">SP</div><div class="projTitle"><a href="https://tls-client.github.io/discord-invite-spoofer/" target="_blank" rel="noopener">invite-spoofer</a></div><div>→</div></div>
+</section>
+
+<div class="sep"></div>
+
+<!-- audio playlist -->
+<section class="card playerWrap" id="player">
+  <div class="title">Now Playing</div>
+  <div class="trackTitle" id="trackTitle">—</div>
+  <audio id="audio" preload="auto"></audio>
+  <div class="controls">
+    <button id="prev" class="smallBtn">⏮</button>
+    <button id="play" class="playBtn">▶</button>
+    <button id="next" class="smallBtn">⏭</button>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> るーしー</footer>
+
+  </div>  <!-- player.js (外部ファイル推奨) -->  <!--
+    以下はプレイヤー制御用のスクリプトです。長いので player.js として分離して
+    index.html と同階層に置いて下さい（GitHub Pagesで配布する場合は audio/ フォルダに
+    MP3を置き、AUDIO_FILES のパスを相対パスに変更してください）。
+
+    デフォルトでランダム再生（シャッフル）モードになっています。
+  -->  <script id="player-inline">
+    // ======= player.js content (copy to player.js for separation) =======
+    (function(){
+      // ローカルに置いたMP3を配列に追加してください。例: 'audio/track1.mp3'
+      // 開発環境では以下の一時パスも利用できますが、公開するときは自ホスティングにして下さい。
+      const AUDIO_FILES = [
+        '/mnt/data/SpotiDownloader.com - Lv.2 vision (feat. AssToro) - alouji.mp3',
+        // ここに追加: 'audio/another-track.mp3'
+      ];
+
+      const audio = document.getElementById('audio');
+      const trackTitle = document.getElementById('trackTitle');
+      const playBtn = document.getElementById('play');
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+
+      let idx = 0; let playing = false;
+
+      function setTrackText(i){
+        const name = AUDIO_FILES[i] ? AUDIO_FILES[i].split('/').pop() : 'No track';
+        trackTitle.textContent = name;
+      }
+
+      function load(i){
+        if(!AUDIO_FILES.length){ audio.removeAttribute('src'); setTrackText(0); return; }
+        idx = i % AUDIO_FILES.length;
+        audio.src = AUDIO_FILES[idx];
+        setTrackText(idx);
+      }
+
+      function play(){
+        audio.play().then(()=>{ playing=true; playBtn.textContent='▌▌'; }).catch((e)=>{ console.warn('Autoplay blocked or error',e); playing=false; playBtn.textContent='▶'; });
+      }
+      function pause(){ audio.pause(); playing=false; playBtn.textContent='▶'; }
+
+      function nextRandom(){ if(!AUDIO_FILES.length) return; const nextIdx = Math.floor(Math.random()*AUDIO_FILES.length); load(nextIdx); if(playing) play(); }
+      function prevRandom(){ if(!AUDIO_FILES.length) return; const prevIdx = Math.floor(Math.random()*AUDIO_FILES.length); load(prevIdx); if(playing) play(); }
+
+      playBtn.addEventListener('click', ()=>{ if(!AUDIO_FILES.length) return; if(playing) pause(); else play(); });
+      nextBtn.addEventListener('click', ()=>{ nextRandom(); });
+      prevBtn.addEventListener('click', ()=>{ prevRandom(); });
+
+      audio.addEventListener('ended', ()=>{ nextRandom(); });
+
+      // 初期ロード
+      if(AUDIO_FILES.length) load( Math.floor(Math.random()*AUDIO_FILES.length) );
+
+      // expose for debugging
+      window.__RUCY_PLAYER = { AUDIO_FILES, load, play, pause, nextRandom };
+    })();
+  </script>  <script>
+    // ======= UI: menu/search/theme =======
+    const hamb = document.getElementById('hamb');
+    const side = document.getElementById('side');
     const overlay = document.getElementById('overlay');
+    const closeSide = document.getElementById('closeSide');
+    hamb.addEventListener('click',()=>{ side.style.left='0'; overlay.style.display='block'; });
+    closeSide.addEventListener('click',()=>{ side.style.left='-320px'; overlay.style.display='none'; });
+    overlay.addEventListener('click',()=>{ side.style.left='-320px'; overlay.style.display='none'; });
 
-    menuBtn.addEventListener('click', () => {
-      sideMenu.classList.add('open');
-      overlay.classList.add('show');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchBar = document.getElementById('searchBar');
+    let searchOpen = false;
+    searchIcon.addEventListener('click', ()=>{ searchOpen = !searchOpen; if(searchOpen) searchBar.classList.add('open'); else searchBar.classList.remove('open'); });
+
+    // theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    const iconSun = document.getElementById('iconSun');
+    const iconMoon = document.getElementById('iconMoon');
+    const saved = localStorage.getItem('theme');
+    if(saved) document.documentElement.setAttribute('data-theme', saved);
+    if(document.documentElement.getAttribute('data-theme') === 'light'){ iconSun.style.display='none'; iconMoon.style.display='inline'; }
+    themeBtn.addEventListener('click', ()=>{
+      const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', cur);
+      localStorage.setItem('theme', cur);
+      if(cur === 'light'){ iconSun.style.display='none'; iconMoon.style.display='inline'; } else { iconSun.style.display='inline'; iconMoon.style.display='none'; }
     });
-    overlay.addEventListener('click', () => {
-      sideMenu.classList.remove('open');
-      overlay.classList.remove('show');
-    });
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Accessibility: close search when clicking outside
+    document.addEventListener('click', (e)=>{ if(!e.target.closest('.searchWrap') && searchOpen){ searchOpen=false; searchBar.classList.remove('open'); } });
   </script></body>
 </html>
