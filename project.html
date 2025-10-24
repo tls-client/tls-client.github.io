@@ -1,31 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Projects — るーしー</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>るーしー | Project</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/script.js"></script>
 </head>
-<body>
-  <div id="app" class="site" data-theme="dark">
-    <header class="topbar">
-      <button onclick="location.href='index.html'" class="icon small">&larr;</button>
-      <nav class="topnav"><a href="index.html">Home</a><a href="project.html" class="active">Project</a><a href="blog.html">Blog</a></nav>
-      <div style="width:46px"></div>
-    </header>
+<body class="light-mode">
+  <header class="navbar">
+    <button class="hamburger" id="hamburger">&#9776;</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="project.html" class="active">Project</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <div class="nav-right">
+      <button id="theme-toggle" class="icon-btn"><i class="theme-icon"></i></button>
+      <button id="search-btn" class="icon-btn"><i class="search-icon"></i></button>
+    </div>
+  </header>
 
-    <main class="main">
-      <section class="card section">
-        <h2>ツール一覧</h2>
-        <div class="proj-grid" id="projectGrid">
-          <!-- JS populates project cards -->
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer"><div class="foot-inner">© <span id="yearProj"></span> るーしー</div></footer>
+  <div class="search-bar" id="search-bar">
+    <input type="text" placeholder="検索..." />
   </div>
 
-  <script src="assets/js/script.js" defer></script>
+  <aside class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="project.html">Project</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </aside>
+
+  <main class="project-content">
+    <h1>開発ツール一覧</h1>
+    <div class="project-grid">
+      <a href="https://tls-client.github.io/sub/" class="project-card">
+        <i class="fas fa-envelope-open"></i>
+        <h2>サブ管理ツール</h2>
+        <p>サブアカウントを効率的に管理できるユーティリティ。</p>
+      </a>
+      <a href="https://tls-client.github.io/arashi-tool/" class="project-card">
+        <i class="fas fa-bolt"></i>
+        <h2>嵐ツール</h2>
+        <p>サーバー運営を自動で整理・最適化。</p>
+      </a>
+      <a href="https://tls-client.github.io/mass-report/" class="project-card">
+        <i class="fas fa-flag"></i>
+        <h2>通報支援ツール</h2>
+        <p>報告業務を高速で行える軽量システム。</p>
+      </a>
+      <a href="https://tls-client.github.io/webhook-spammer/" class="project-card">
+        <i class="fas fa-code"></i>
+        <h2>Webhook送信ツール</h2>
+        <p>DiscordのWebhookを一括送信・テスト可能。</p>
+      </a>
+      <a href="https://tls-client.github.io/group-leaver/" class="project-card">
+        <i class="fas fa-sign-out-alt"></i>
+        <h2>グループ離脱ツール</h2>
+        <p>指定グループを一括で退出可能。</p>
+      </a>
+      <a href="https://tls-client.github.io/token-checker/" class="project-card">
+        <i class="fas fa-key"></i>
+        <h2>トークンチェッカー</h2>
+        <p>トークンの有効性を確認・管理。</p>
+      </a>
+      <a href="https://tls-client.github.io/dm-tool/" class="project-card">
+        <i class="fas fa-comment-dots"></i>
+        <h2>DM支援ツール</h2>
+        <p>大量のDMを一括で送信する効率的なツール。</p>
+      </a>
+      <a href="https://tls-client.github.io/bot-tool/" class="project-card">
+        <i class="fas fa-robot"></i>
+        <h2>Bot運用ツール</h2>
+        <p>Discord Botの管理・運用をサポート。</p>
+      </a>
+      <a href="https://github.com/tls-client/discord-fast-message" class="project-card">
+        <i class="fas fa-paper-plane"></i>
+        <h2>高速メッセージ送信</h2>
+        <p>軽量で最速のメッセージ送信ライブラリ。</p>
+      </a>
+      <a href="https://tls-client.github.io/discord-invite-spoofer/" class="project-card">
+        <i class="fas fa-link"></i>
+        <h2>招待コードスプーファー</h2>
+        <p>Discord招待リンクをカスタム変換。</p>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 るーしー. All Rights Reserved.</p>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/a2e0c0c7b5.js" crossorigin="anonymous"></script>
 </body>
 </html>
