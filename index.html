@@ -3,178 +3,217 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>るーしー | Developer & Blogger</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
-      --bg-light: #ffffff;
-      --bg-dark: #121212;
-      --text-light: #000000;
-      --text-dark: #ffffff;
-    }body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  transition: all 0.3s ease;
-}
-
-body.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  background: inherit;
-  z-index: 100;
-}
-
-.menu {
-  display: flex;
-  gap: 15px;
-}
-
-.menu a {
-  color: inherit;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.toggle-theme {
-  cursor: pointer;
-  font-size: 22px;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.profile-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 15px;
-}
-
-h1 {
-  margin: 10px 0 5px;
-  font-size: 1.8em;
-}
-
-.subtitle {
-  color: gray;
-  margin-bottom: 20px;
-}
-
-.socials {
-  display: flex;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.socials a {
-  color: inherit;
-  font-size: 22px;
-  transition: opacity 0.2s;
-}
-
-.socials a:hover {
-  opacity: 0.7;
-}
-
-.projects {
-  margin-top: 40px;
-  text-align: left;
-  width: 100%;
-  max-width: 500px;
-}
-
-.projects a {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.05);
-  transition: background 0.2s;
-}
-
-body.dark .projects a {
-  background: rgba(255,255,255,0.1);
-}
-
-.projects a:hover {
-  background: rgba(0,0,0,0.1);
-}
-
-@media (max-width: 600px) {
-  .menu {
-    gap: 10px;
-  }
-  h1 {
-    font-size: 1.5em;
-  }
-}
-
+      --bg-color: #fff;
+      --text-color: #000;
+      --accent-color: #555;
+    }
+    [data-theme='dark'] {
+      --bg-color: #111;
+      --text-color: #f0f0f0;
+      --accent-color: #888;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--accent-color);
+      padding: 0.5rem 1rem;
+      z-index: 1000;
+    }
+    .hamburger {
+      font-size: 1.4rem;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: var(--text-color);
+    }
+    .search {
+      padding: 0.4rem;
+      border-radius: 5px;
+      border: 1px solid var(--accent-color);
+      background: transparent;
+      color: var(--text-color);
+    }
+    main {
+      padding-top: 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .icon-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-top: 1rem;
+    }
+    h1 {
+      margin: 0.5rem 0 0.2rem;
+      font-size: 1.6rem;
+    }
+    .role {
+      font-size: 1rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    .sns-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .sns-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.4rem;
+      transition: color 0.2s;
+    }
+    .sns-links a:hover {
+      color: var(--accent-color);
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 900;
+    }
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: var(--bg-color);
+      padding: 1rem;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+      transition: left 0.3s;
+      z-index: 1000;
+    }
+    .side-menu.open {
+      left: 0;
+    }
+    .menu-overlay.show {
+      display: block;
+    }
+    .side-menu h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .side-menu a {
+      display: block;
+      color: var(--text-color);
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--accent-color);
+      padding: 1rem 0;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="menu">
+    <button class="hamburger" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+    <nav>
       <a href="#home">Home</a>
-      <a href="#projects">Project</a>
-      <a href="#search">Search</a>
+      <a href="#project">Project</a>
       <a href="#blog">Blog</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <input type="text" class="search" placeholder="Search" />
+      <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-sun"></i></button>
     </div>
-    <div class="toggle-theme" id="theme-toggle">
-      <i class="fa-solid fa-sun" id="sun-icon"></i>
-      <i class="fa-solid fa-moon" id="moon-icon" style="display:none;"></i>
-    </div>
-  </header>  <section class="container" id="home">
-    <img src="https://raw.githubusercontent.com/ru-shi-profile-assets/main/face.png" alt="profile" class="profile-img">
+  </header>  <div class="menu-overlay" id="overlay"></div>
+  <div class="side-menu" id="sideMenu">
+    <h2>Menu</h2>
+    <a href="#about">About Me</a>
+    <a href="#blog">Blog</a>
+  </div>  <main id="home">
+    <img src="your-icon.png" alt="icon" class="icon-img" />
     <h1>るーしー</h1>
-    <p class="subtitle">Developer & Blogger</p><div class="socials">
-  <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-  <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
-  <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <div class="role">Developer & Blogger</div><div class="sns-links">
+  <a href="https://dc.gg/ctkp" title="Discord"><i class="fa-brands fa-discord"></i></a>
+  <a href="https://twitter.com/rucyj" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+  <a href="https://tiktok.com/@ragnyard" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  <a href="https://github.com/tls-client" title="GitHub"><i class="fa-brands fa-github"></i></a>
+  <a href="https://t.me/rucyontop" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+  <a href="https://note.com/rucybook" title="Note"><i class="fa-solid fa-book"></i></a>
+  <a href="https://soundcloud.com/rucygod" title="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
+  <a href="https://sptfy.in/rucy" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
 </div>
 
-  </section>  <section class="projects" id="projects">
+  </main>  <section id="project" style="padding:1rem;text-align:center;">
     <h2>Projects</h2>
-    <a href="https://tls-client.github.io/sub/">Sub</a>
-    <a href="https://tls-client.github.io/arashi-tool/">Arashi Tool</a>
-    <a href="https://tls-client.github.io/mass-report/">Mass Report</a>
-    <a href="https://tls-client.github.io/webhook-spammer/">Webhook Spammer</a>
-    <a href="https://tls-client.github.io/group-leaver/">Group Leaver</a>
-    <a href="https://tls-client.github.io/token-checker/">Token Checker</a>
-    <a href="https://tls-client.github.io/dm-tool/">DM Tool</a>
-    <a href="https://tls-client.github.io/bot-tool/">Bot Tool</a>
-    <a href="https://github.com/tls-client/discord-fast-message">Discord Fast Message</a>
-    <a href="https://tls-client.github.io/discord-invite-spoofer/">Discord Invite Spoofer</a>
-  </section>  <script>
-    const toggle = document.getElementById('theme-toggle');
-    const sun = document.getElementById('sun-icon');
-    const moon = document.getElementById('moon-icon');
+    <ul style="list-style:none;padding:0;">
+      <li><a href="https://tls-client.github.io/sub/">Sub Tool</a></li>
+      <li><a href="https://tls-client.github.io/arashi-tool/">Arashi Tool</a></li>
+      <li><a href="https://tls-client.github.io/mass-report/">Mass Report</a></li>
+      <li><a href="https://tls-client.github.io/webhook-spammer/">Webhook Spammer</a></li>
+      <li><a href="https://tls-client.github.io/group-leaver/">Group Leaver</a></li>
+      <li><a href="https://tls-client.github.io/token-checker/">Token Checker</a></li>
+      <li><a href="https://tls-client.github.io/dm-tool/">DM Tool</a></li>
+      <li><a href="https://tls-client.github.io/bot-tool/">Bot Tool</a></li>
+      <li><a href="https://github.com/tls-client/discord-fast-message">Discord Fast Message</a></li>
+      <li><a href="https://tls-client.github.io/discord-invite-spoofer/">Invite Spoofer</a></li>
+    </ul>
+  </section>  <footer>© 2025 るーしー</footer>  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) document.documentElement.setAttribute('data-theme', currentTheme);
 
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      if (document.body.classList.contains('dark')) {
-        sun.style.display = 'none';
-        moon.style.display = 'inline';
-      } else {
-        sun.style.display = 'inline';
-        moon.style.display = 'none';
-      }
+    themeToggle.addEventListener('click', () => {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeToggle.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+    });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('overlay');
+
+    menuBtn.addEventListener('click', () => {
+      sideMenu.classList.add('open');
+      overlay.classList.add('show');
+    });
+    overlay.addEventListener('click', () => {
+      sideMenu.classList.remove('open');
+      overlay.classList.remove('show');
     });
   </script></body>
 </html>
