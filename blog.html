@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — るーしー</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="app" class="site" data-theme="dark">
+    <header class="topbar">
+      <button onclick="location.href='index.html'" class="icon small">&larr;</button>
+      <nav class="topnav"><a href="index.html">Home</a><a href="project.html">Project</a><a href="blog.html" class="active">Blog</a></nav>
+      <div style="width:46px"></div>
+    </header>
+
+    <main class="main">
+      <section class="card section">
+        <h2>Blog</h2>
+        <div class="blog-controls">
+          <input id="blogSearch" placeholder="記事を検索" />
+        </div>
+
+        <div class="blog-list" id="blogList">
+          <!-- JS renders post cards -->
+        </div>
+
+        <div class="blog-side">
+          <div class="card">
+            <h4>Archives</h4>
+            <div id="archivesList"></div>
+          </div>
+
+          <div class="card">
+            <h4>Categories</h4>
+            <div id="categoriesList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="foot-inner">© <span id="yearBlog"></span> るーしー</div></footer>
+  </div>
+
+  <script src="assets/js/script.js" defer></script>
+</body>
+</html>
