@@ -1,69 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>るーしー | Home</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <script defer src="assets/script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website - Home</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="icon" href="assets/icons/favicon.svg">
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
-<body class="light-mode">
-  <!-- ヘッダー -->
-  <header class="navbar">
-    <button class="hamburger" id="hamburger">&#9776;</button>
-    <nav class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="project.html">Project</a>
-      <a href="blog.html">Blog</a>
-    </nav>
-    <div class="nav-right">
-      <button id="theme-toggle" class="icon-btn">
-        <i class="theme-icon"></i>
-      </button>
-      <button id="search-btn" class="icon-btn">
-        <i class="search-icon"></i>
-      </button>
-    </div>
-  </header>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <nav class="nav" id="nav">
+            <a href="index.html">Home</a>
+            <a href="project.html">Project</a>
+            <a href="blog.html">Blog</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+        <div class="theme-toggle" id="theme-toggle">🌙</div>
+    </header>
 
-  <!-- 検索バー（クリックで展開） -->
-  <div class="search-bar" id="search-bar">
-    <input type="text" placeholder="検索..." />
-  </div>
+    <!-- メインコンテンツ -->
+    <main>
+        <section class="hero">
+            <h1>Welcome to My Website</h1>
+            <p>黒白テーマ・スマホ対応・シンプルデザイン</p>
+        </section>
 
-  <!-- ハンバーガーメニュー -->
-  <aside class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="about.html">About Me</a></li>
-      <li><a href="project.html">Project</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </aside>
+        <section class="content">
+            <h2>最新情報</h2>
+            <p>ここにブログやプロジェクトの紹介などを配置</p>
+        </section>
+    </main>
 
-  <!-- メイン -->
-  <main class="home-content">
-    <img src="assets/img/profile.png" alt="るーしー" class="profile-icon">
-    <h1 class="name">るーしー</h1>
-    <p class="role">開発者・ブロガー</p>
-
-    <section class="social-links">
-      <a href="https://twitter.com/rucyj" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://github.com/tls-client" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://tiktok.com/@ragnyard" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="https://note.com/rucybook" target="_blank"><i class="fas fa-pen"></i></a>
-      <a href="https://soundcloud.com/rucygod" target="_blank"><i class="fab fa-soundcloud"></i></a>
-      <a href="https://sptfy.in/rucy" target="_blank"><i class="fab fa-spotify"></i></a>
-      <a href="https://t.me/rucyontop" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://dc.gg/ctkp" target="_blank"><i class="fas fa-comments"></i></a>
-    </section>
-  </main>
-
-  <!-- フッター -->
-  <footer class="footer">
-    <p>© 2025 るーしー. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a2e0c0c7b5.js" crossorigin="anonymous"></script>
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2025 My Website. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
