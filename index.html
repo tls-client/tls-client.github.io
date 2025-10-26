@@ -1,43 +1,237 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website - Home</title>
-    <link rel="stylesheet" href="common.css">
-    <link rel="icon" href="assets/icons/favicon.svg">
-    <script src="script.js" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>るーしー — Developer · Blogger</title>
+<meta name="description" content="るーしーのホームページ（開発者・ブロガー）">
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<style>
+/* -----------------------------
+   リセット & 基本
+----------------------------- */
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{font-family:'Inter','Noto Sans JP',sans-serif;background-color:#000;color:#fff;scroll-behavior:smooth;}
+a{color:inherit;text-decoration:none;}
+
+/* -----------------------------
+   ヘッダー / ナビ
+----------------------------- */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;background-color:#111;position:sticky;top:0;z-index:100;}
+.topnav{display:flex;gap:1rem;}
+.topnav .nav-link.active{border-bottom:2px solid #fff;}
+.right-controls{display:flex;gap:.6rem;align-items:center;}
+.icon{background:none;border:none;cursor:pointer;color:#fff;}
+
+/* -----------------------------
+   サイドメニュー
+----------------------------- */
+.side-menu{position:fixed;top:0;left:-300px;width:280px;height:100%;background-color:#111;color:#fff;padding:1rem;transition:left .3s ease;z-index:200;}
+.side-menu.active{left:0;}
+.side-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.side-links{display:flex;flex-direction:column;gap:.5rem;}
+.side-foot{position:absolute;bottom:1rem;font-size:.8rem;}
+
+/* -----------------------------
+   検索バー
+----------------------------- */
+.searchbar{display:flex;gap:.5rem;padding:.5rem 1rem;background-color:#111;}
+.searchbar.hidden{display:none;}
+.searchbar input{flex:1;padding:.4rem .6rem;border-radius:4px;border:none;background-color:#222;color:#fff;}
+
+/* -----------------------------
+   メインカード / セクション
+----------------------------- */
+.main{padding:1rem;}
+.card{background-color:#111;border-radius:12px;padding:1rem;margin-bottom:1rem;box-shadow:0 0 10px rgba(255,255,255,.05);}
+.hero{text-align:center;}
+.hero .avatar{width:100px;height:100px;margin:0 auto .5rem;border-radius:50%;overflow:hidden;}
+.hero .avatar img{width:100%;height:100%;object-fit:cover;}
+.display-name{font-size:1.6rem;margin-bottom:.2rem;}
+.subtitle{font-size:1rem;opacity:.7;margin-bottom:.5rem;}
+.sns-row{display:flex;justify-content:center;gap:.6rem;}
+.sns svg{stroke:#fff;width:18px;height:18px;}
+
+/* -----------------------------
+   音楽プレイヤー
+----------------------------- */
+.player{display:flex;align-items:center;gap:1rem;}
+.player-left .btn.play{padding:.4rem .8rem;border:none;border-radius:4px;background-color:#222;color:#fff;cursor:pointer;}
+
+/* -----------------------------
+   フッター
+----------------------------- */
+.footer{padding:1rem;background-color:#111;text-align:center;font-size:.9rem;}
+.bottom-links{display:flex;justify-content:center;gap:1rem;margin-bottom:.5rem;}
+
+/* -----------------------------
+   レスポンシブ
+----------------------------- */
+@media(max-width:768px){
+  .topnav{display:none;}
+  .side-menu{width:80%;}
+}
+</style>
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header class="header">
-        <div class="hamburger" id="hamburger">&#9776;</div>
-        <nav class="nav" id="nav">
-            <a href="index.html">Home</a>
-            <a href="project.html">Project</a>
-            <a href="blog.html">Blog</a>
-            <a href="profile.html">Profile</a>
-        </nav>
-        <div class="theme-toggle" id="theme-toggle">🌙</div>
-    </header>
+<div id="app" class="site" data-theme="dark">
 
-    <!-- メインコンテンツ -->
-    <main>
-        <section class="hero">
-            <h1>Welcome to My Website</h1>
-            <p>黒白テーマ・スマホ対応・シンプルデザイン</p>
-        </section>
+<!-- Header -->
+<header class="topbar">
+  <button id="hambBtn" class="icon icon-hamburger" aria-label="menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <nav class="topnav" aria-label="primary">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="project.html" class="nav-link">Project</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+  <div class="right-controls">
+    <button id="searchBtn" class="icon icon-search" aria-label="search">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="5"/><path d="M21 21l-4.5-4.5"/></svg>
+    </button>
+    <button id="themeBtn" class="icon icon-theme" aria-label="theme">
+      <svg id="iconSun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4 4l1.5 1.5M18.5 18.5L20 20M2 12h2M20 12h2M4 20l1.5-1.5M18.5 5.5L20 4"/></svg>
+      <svg id="iconMoon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>
+    </button>
+  </div>
+</header>
 
-        <section class="content">
-            <h2>最新情報</h2>
-            <p>ここにブログやプロジェクトの紹介などを配置</p>
-        </section>
-    </main>
+<!-- Search -->
+<div id="searchBar" class="searchbar hidden">
+  <input id="searchInput" placeholder="検索">
+  <button id="closeSearch" class="btn small">✕</button>
+</div>
 
-    <!-- フッター -->
-    <footer>
-        <p>&copy; 2025 My Website. All Rights Reserved.</p>
-    </footer>
+<!-- Side menu -->
+<aside id="sideMenu" class="side-menu" aria-hidden="true">
+  <div class="side-head">
+    <strong>Menu</strong>
+    <button id="closeSide" class="btn small">✕</button>
+  </div>
+  <div class="side-block">
+    <div class="side-item">
+      <label class="side-label">Search</label>
+      <input id="sideSearch" placeholder="検索">
+    </div>
+    <div class="side-item">
+      <label class="side-label">About Me</label>
+      <nav class="side-links">
+        <a href="about.html#profile">Profile</a>
+        <a href="about.html#hobby">Hobby</a>
+        <a href="about.html#life">Life</a>
+        <a href="about.html#device">Device</a>
+        <a href="about.html#skills">Skills</a>
+        <a href="about.html#social">Social</a>
+        <a href="about.html#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="side-item">
+      <label class="side-label">Projects</label>
+      <nav class="side-links" id="sideProjects"></nav>
+    </div>
+    <div class="side-item">
+      <label class="side-label">Blog</label>
+      <div id="sidePosts"></div>
+    </div>
+  </div>
+  <div class="side-foot">© <span id="year1"></span> るーしー</div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+  <section class="card hero">
+    <div class="avatar"><img src="images/profile.png" alt="るーしー" id="profileImg"></div>
+    <h1 class="display-name">るーしー</h1>
+    <div class="subtitle">開発者・ブロガー</div>
+    <div class="sns-row" id="snsRow">
+      <a class="sns" href="https://dc.gg/ctkp" target="_blank" aria-label="Discord">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M7.5 9.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm9 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="card section" id="projectsPreview">
+    <div class="section-head"><h3>Projects</h3></div>
+    <div class="proj-list" id="projList"></div>
+  </section>
+
+  <section class="card section player" id="playerCard">
+    <div class="player-left"><button id="playBtn" class="btn play">▶</button></div>
+    <div class="player-right">
+      <div class="track-title" id="trackTitle">Lv.2 vision (feat. AssToro)</div>
+      <div class="track-artist" id="trackArtist">alouji</div>
+    </div>
+  </section>
+
+  <section class="card section" id="blogPreview">
+    <div class="section-head"><h3>Blog</h3></div>
+    <div id="posts" class="posts"></div>
+    <div class="see-more"><a href="blog.html">全て見る →</a></div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="foot-inner">
+    <nav class="bottom-links">
+      <a href="index.html">Home</a>
+      <a href="project.html">Project</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <div class="copyright">© <span id="year2"></span> るーしー</div>
+  </div>
+</footer>
+
+<script>
+// -----------------------------
+// ハンバーガー展開
+// -----------------------------
+const hambBtn = document.getElementById('hambBtn');
+const sideMenu = document.getElementById('sideMenu');
+const closeSide = document.getElementById('closeSide');
+hambBtn.addEventListener('click',()=>{sideMenu.classList.add('active');});
+closeSide.addEventListener('click',()=>{sideMenu.classList.remove('active');});
+
+// -----------------------------
+// 検索バー
+// -----------------------------
+const searchBtn = document.getElementById('searchBtn');
+const searchBar = document.getElementById('searchBar');
+const closeSearch = document.getElementById('closeSearch');
+searchBtn.addEventListener('click',()=>{searchBar.classList.remove('hidden');});
+closeSearch.addEventListener('click',()=>{searchBar.classList.add('hidden');});
+
+// -----------------------------
+// テーマ切替
+// -----------------------------
+const themeBtn = document.getElementById('themeBtn');
+const iconSun = document.getElementById('iconSun');
+const iconMoon = document.getElementById('iconMoon');
+themeBtn.addEventListener('click',()=>{
+  const app = document.getElementById('app');
+  if(app.dataset.theme==='dark'){
+    app.dataset.theme='light';
+    iconSun.style.display='none';
+    iconMoon.style.display='inline';
+    document.body.style.backgroundColor='#fff';
+    document.body.style.color='#000';
+  }else{
+    app.dataset.theme='dark';
+    iconSun.style.display='inline';
+    iconMoon.style.display='none';
+    document.body.style.backgroundColor='#000';
+    document.body.style.color='#fff';
+  }
+});
+
+// -----------------------------
+// 年表示
+// -----------------------------
+document.getElementById('year1').textContent=new Date().getFullYear();
+document.getElementById('year2').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
