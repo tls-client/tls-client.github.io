@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxymoron:wght@700&display=swap');
+body {margin: 0; font-family: 'Oxymoron', Arial, sans-serif; background: #111; color: #fff;}
+header {display:flex; align-items:center; justify-content:space-between; padding: 7px 15px; background: #181818;}
+nav a { color: #fff; text-decoration: none; margin: 0 14px; font-weight: 700;}
+nav a.active { border-bottom: 2px solid #fff; }
+.right-area {display:flex; align-items:center;}
+#theme-toggle { margin-right: 10px; border-radius: 50%; width: 28px; height: 28px; border: 1px solid #ccc; background: #222; cursor:pointer;}
+#theme-toggle.light {background:#fff;}
+#search-bar, .drawer-search { border-radius:15px; border:none; padding:5px 12px; background:#282828; color:#fff;}
+.circle-img {border-radius:50%; width:72px; height:72px;}
+.name {font-size:2.2rem; font-weight:700; color:#fff; margin:15px 0 6px 0;}
+.title {font-size: 1.1rem; color:#bbb; margin-bottom:12px;}
+.sns-wrap {display:flex; flex-wrap:wrap; gap:9px; justify-content:center; margin: 24px 0;}
+.sns-wrap a {background:#222; color:#fff; border-radius:16px; padding:7px 13px; text-decoration:none; font-size: 0.97rem;}
+#menu-btn {background:none; border:none; font-size:2rem; color:#fff; cursor:pointer;}
+aside#drawer-menu {position:fixed; top:0; left:0; bottom:0; width:270px; background:#202020; color:#fff; z-index:99; padding:28px 20px 20px 20px; display:none; overflow-y:auto;}
+#close-drawer {background:none; border:none; font-size:2rem; color:#fff; float:right; cursor:pointer;}
+.about-toc {list-style:none; margin:1em 0; padding:0;}
+.about-toc li {margin-bottom:2px;}
+.tool-list {list-style: none; padding:0;}
+.tool-list li {margin-bottom:10px;}
+.blog-thumb {width:54px; height:54px; border-radius:7px;}
+.meta {font-size:0.85em; color:#ccc;}
+@media (max-width: 600px) {
+  header {flex-direction:column; align-items:stretch;}
+  .profile-center {padding:30px 5px;}
+}
