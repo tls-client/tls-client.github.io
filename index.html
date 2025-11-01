@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oxymoron | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
-  <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <title>Oxymoron - Web Developer and Reverse Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/script.js"></script>
 </head>
 <body class="dark">
-  <header class="header">
-    <div class="menu-btn" id="menuBtn">☰</div>
-    <nav class="nav-links">
+  <header>
+    <button id="menu-btn">&#9776;</button>
+    <nav>
       <a href="index.html" class="active">Home</a>
       <a href="project.html">Project</a>
       <a href="blog.html">Blog</a>
     </nav>
-    <div class="header-right">
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search..." />
-        <button id="searchBtn">🔍</button>
-      </div>
-      <div class="theme-toggle" id="themeToggle"></div>
-      <img src="profile.jpg" alt="Profile" class="profile-icon" />
+    <div class="right-area">
+      <button id="theme-toggle"></button>
+      <button id="search-btn">&#128269;</button>
+      <input type="search" id="search-bar" placeholder="検索..." style="display:none;">
     </div>
   </header>
-
-  <main class="home">
-    <section class="intro">
-      <img src="profile.jpg" alt="Oxymoron Icon" class="profile-pic" />
+  <main>
+    <div class="profile-center">
+      <img src="assets/youricon.jpg" alt="icon" class="circle-img">
       <h1 class="name">Oxymoron</h1>
-      <h2 class="role">Web Developer and Reverse Engineering</h2>
-    </section>
-
-    <section class="social-links">
-      <a href="https://dc.gg/ctkp" target="_blank"><img src="icons/discord.svg" alt="Discord" /></a>
-      <a href="https://dc.gg/aarr" target="_blank"><img src="icons/discord.svg" alt="Discord" /></a>
-      <a href="https://dc.gg/dpko" target="_blank"><img src="icons/discord.svg" alt="Discord" /></a>
-      <a href="https://twitter.com/rucyj" target="_blank"><img src="icons/twitter.svg" alt="Twitter" /></a>
-      <a href="https://twitter.com/hisamex" target="_blank"><img src="icons/twitter.svg" alt="Twitter" /></a>
-      <a href="https://twitter.com/razbeu" target="_blank"><img src="icons/twitter.svg" alt="Twitter" /></a>
-      <a href="https://tiktok.com/@ragnyard" target="_blank"><img src="icons/tiktok.svg" alt="TikTok" /></a>
-      <a href="https://github.com/tls-client" target="_blank"><img src="icons/github.svg" alt="GitHub" /></a>
-      <a href="https://t.me/rucyontop" target="_blank"><img src="icons/telegram.svg" alt="Telegram" /></a>
-      <a href="https://note.com/rucybook" target="_blank"><img src="icons/note.svg" alt="Note" /></a>
-      <a href="https://soundcloud.com/rucygod" target="_blank"><img src="icons/soundcloud.svg" alt="SoundCloud" /></a>
-      <a href="https://sptfy.in/rucy" target="_blank"><img src="icons/spotify.svg" alt="Spotify" /></a>
-    </section>
+      <h2 class="title">Web Developer and Reverse Engineering</h2>
+      <p class="desc">自己紹介をここにどうぞ！例：学生プログラマー。多趣味。複数SNS運用。</p>
+      <div class="sns-wrap">
+        <a href="https://dc.gg/ctkp" target="_blank">Discord(雑談鯖)</a>
+        <a href="https://dc.gg/aarr" target="_blank">Discord(shop鯖)</a>
+        <a href="https://dc.gg/dpko" target="_blank">Discord(nsfw鯖)</a>
+        <a href="https://twitter.com/rucyj" target="_blank">Twitter(本垢)</a>
+        <a href="https://twitter.com/hisamex" target="_blank">Twitter(相互)</a>
+        <a href="https://twitter.com/razbeu" target="_blank">Twitter(避難)</a>
+        <a href="https://tiktok.com/@ragnyard" target="_blank">TikTok</a>
+        <a href="https://github.com/tls-client" target="_blank">GitHub</a>
+        <a href="https://t.me/rucyontop" target="_blank">Telegram</a>
+        <a href="https://note.com/rucybook" target="_blank">Note</a>
+        <a href="https://soundcloud.com/rucygod" target="_blank">SoundCloud</a>
+        <a href="https://sptfy.in/rucy" target="_blank">Spotify</a>
+      </div>
+    </div>
   </main>
-
-  <footer class="footer">
-    <p>© 2025 Oxymoron. All rights reserved.</p>
-  </footer>
+  <aside id="drawer-menu" style="display:none;">
+    <button id="close-drawer">×</button>
+    <input type="search" placeholder="検索..." class="drawer-search">
+    <nav>
+      <a href="about.html">About Me</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <ul class="about-toc">
+      <li><a href="about.html#profile">Profile</a></li>
+      <li><a href="about.html#hobby">Hobby</a></li>
+      <li><a href="about.html#life">Life</a></li>
+      <li><a href="about.html#device">Device</a></li>
+      <li><a href="about.html#skills">Skills</a></li>
+      <li><a href="about.html#social">Social Link</a></li>
+      <li><a href="about.html#contact">Contact</a></li>
+    </ul>
+  </aside>
 </body>
 </html>
