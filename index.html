@@ -1,70 +1,248 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>Oxymoron - Web Developer and Reverse Engineering</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="css/style.css" />
-  <script defer src="js/script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>るーしー</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
 </head>
-<body class="dark">
-  <header class="header">
-    <div class="header-left">
-      <button id="menu-btn" class="hamburger" aria-label="メニューを開く" type="button">&#9776;</button>
-    </div>
-    <div class="header-center">
-      <nav class="nav-horizontal" role="navigation" aria-label="メインナビゲーション">
-        <a href="index.html" class="active">Home</a>
-        <a href="project.html">Project</a>
-        <a href="blog.html">Blog</a>
-      </nav>
-    </div>
-    <div class="header-right">
-      <button id="theme-toggle" title="テーマ切替" aria-label="テーマモードの切り替え" type="button">🌓</button>
-      <button id="search-btn" title="検索" aria-label="検索バー表示切替" type="button">&#128269;</button>
-      <input type="search" id="search-bar" placeholder="検索..." class="search-bar" aria-label="サイト内検索" style="display:none;" />
-    </div>
-  </header>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav">
+            <a href="/" class="nav-home">るーしー</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">👋</a>
+                <a href="#blog" class="nav-link">✍️</a>
+                <a href="#projects" class="nav-link">💻</a>
+                <a href="#contact" class="nav-link">📧</a>
+            </div>
+        </nav>
 
-  <main>
-    <section class="profile">
-      <img src="assets/youricon.jpg" alt="プロフィール画像" class="profile-icon" />
-      <h1 class="name">Oxymoron</h1>
-      <h2 class="title">Web Developer and Reverse Engineering</h2>
-      <p class="desc">学生プログラマー。Reverse Engineering好き。複数SNS運用中。</p>
-      <div class="sns-links">
-        <a href="https://dc.gg/ctkp" target="_blank" rel="noopener noreferrer">Discord(雑談鯖)</a>
-        <a href="https://dc.gg/aarr" target="_blank" rel="noopener noreferrer">Discord(shop鯖)</a>
-        <a href="https://dc.gg/dpko" target="_blank" rel="noopener noreferrer">Discord(nsfw鯖)</a>
-        <a href="https://twitter.com/rucyj" target="_blank" rel="noopener noreferrer">Twitter(本垢)</a>
-        <a href="https://twitter.com/hisamex" target="_blank" rel="noopener noreferrer">Twitter(相互)</a>
-        <a href="https://twitter.com/razbeu" target="_blank" rel="noopener noreferrer">Twitter(避難)</a>
-        <a href="https://tiktok.com/@ragnyard" target="_blank" rel="noopener noreferrer">TikTok</a>
-        <a href="https://github.com/tls-client" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://t.me/rucyontop" target="_blank" rel="noopener noreferrer">Telegram</a>
-        <a href="https://note.com/rucybook" target="_blank" rel="noopener noreferrer">Note</a>
-        <a href="https://soundcloud.com/rucygod" target="_blank" rel="noopener noreferrer">SoundCloud</a>
-        <a href="https://sptfy.in/rucy" target="_blank" rel="noopener noreferrer">Spotify</a>
-      </div>
-    </section>
-  </main>
+        <!-- Main Content -->
+        <main class="main">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="content">
+                    <h1>るーしー</h1>
+                    <p>Web Developer & Reverse Engineering</p>
+                    
+                    <div class="social-links">
+                        <a href="https://dc.gg/ctkp" target="_blank">Discord (雑談鯖)</a>
+                        <a href="https://dc.gg/aarr" target="_blank">Discord (shop鯖)</a>
+                        <a href="https://dc.gg/dpko" target="_blank">Discord (nsfw鯖)</a>
+                        <a href="https://twitter.com/rucyj" target="_blank">Twitter (本垢)</a>
+                        <a href="https://twitter.com/hisamex" target="_blank">Twitter (相互)</a>
+                        <a href="https://twitter.com/razbeu" target="_blank">Twitter (避難)</a>
+                        <a href="https://tiktok.com/@ragnyard" target="_blank">TikTok</a>
+                        <a href="https://github.com/tls-client" target="_blank">GitHub</a>
+                        <a href="https://t.me/rucyontop" target="_blank">Telegram</a>
+                        <a href="https://note.com/rucybook" target="_blank">Note</a>
+                        <a href="https://soundcloud.com/rucygod" target="_blank">SoundCloud</a>
+                        <a href="https://sptfy.in/rucy" target="_blank">Spotify</a>
+                    </div>
 
-  <aside id="drawer-menu" class="drawer" aria-label="ドロワーメニュー" role="menu" style="display:none;">
-    <button id="close-drawer" class="close-btn" aria-label="ドロワーメニューを閉じる" type="button">×</button>
-    <input type="search" placeholder="検索..." class="drawer-search" aria-label="ドロワーメニュー内の検索" />
-    <nav class="drawer-nav" role="navigation" aria-label="ドロワーメニュー内ナビ">
-      <a href="about.html">About Me</a>
-      <a href="blog.html">Blog</a>
-    </nav>
-    <ul class="about-toc">
-      <li><a href="about.html#profile">Profile</a></li>
-      <li><a href="about.html#hobby">Hobby</a></li>
-      <li><a href="about.html#life">Life</a></li>
-      <li><a href="about.html#device">Device</a></li>
-      <li><a href="about.html#skills">Skills</a></li>
-      <li><a href="about.html#social">Social Link</a></li>
-      <li><a href="about.html#contact">Contact</a></li>
-    </ul>
-  </aside>
+                    <div class="github-card" id="github-card">
+                        <div class="github-avatar" id="github-avatar"></div>
+                        <div class="github-info">
+                            <div class="github-name" id="github-name">Loading...</div>
+                            <div class="github-bio" id="github-bio">Loading...</div>
+                            <div class="github-stats">
+                                <span id="github-followers">0</span> followers · 
+                                <span id="github-following">0</span> following · 
+                                <span id="github-repos">0</span> repos
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-details">
+                        <h2>About</h2>
+                        <p>Web開発とリバースエンジニアリングを専門とする開発者。日々新しい技術を学びながら、便利なツールを作っています。</p>
+                        
+                        <h2>Skills</h2>
+                        <ul>
+                            <li>JavaScript/TypeScript</li>
+                            <li>Python</li>
+                            <li>HTML/CSS</li>
+                            <li>C/C++</li>
+                            <li>Assembly</li>
+                            <li>Reverse Engineering</li>
+                        </ul>
+
+                        <h2>Interests</h2>
+                        <ul>
+                            <li>プログラミング</li>
+                            <li>リバースエンジニアリング</li>
+                            <li>ゲーム</li>
+                            <li>アニメ・漫画</li>
+                            <li>音楽鑑賞</li>
+                            <li>筋トレ・散歩</li>
+                        </ul>
+
+                        <h2>Contact</h2>
+                        <p>Email: rucy@example.com</p>
+                        <p>Discord: るーしー#0001</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="content">
+                    <h1>Projects</h1>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <h3>便利ツール1</h3>
+                            <p>GitHubで開発した便利なツールの説明</p>
+                            <div class="project-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Node.js</span>
+                            </div>
+                            <a href="https://github.com/tls-client" target="_blank">View on GitHub</a>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>便利ツール2</h3>
+                            <p>もう一つの便利なツールの説明</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">API</span>
+                            </div>
+                            <a href="https://github.com/tls-client" target="_blank">View on GitHub</a>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>便利ツール3</h3>
+                            <p>三つ目の便利なツールの説明</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                            <a href="https://github.com/tls-client" target="_blank">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section id="blog" class="section">
+                <div class="content">
+                    <h1>Blog</h1>
+                    
+                    <div class="blog-nav">
+                        <a href="#recent" class="blog-nav-link active">Recent</a>
+                        <a href="#archives" class="blog-nav-link">Archives</a>
+                        <a href="#categories" class="blog-nav-link">Categories</a>
+                    </div>
+
+                    <div class="blog-posts" id="recent-posts">
+                        <article class="blog-post">
+                            <h3>ブログ記事タイトル1</h3>
+                            <div class="blog-meta">
+                                <span class="blog-date">2024-01-19</span>
+                                <span class="blog-category">日記・記事</span>
+                            </div>
+                            <p>ブログ記事の内容...</p>
+                            <div class="blog-tags">
+                                <span class="tag">日常</span>
+                                <span class="tag">技術</span>
+                            </div>
+                        </article>
+                        
+                        <article class="blog-post">
+                            <h3>ブログ記事タイトル2</h3>
+                            <div class="blog-meta">
+                                <span class="blog-date">2024-01-18</span>
+                                <span class="blog-category">勉強・読書</span>
+                            </div>
+                            <p>ブログ記事の内容...</p>
+                            <div class="blog-tags">
+                                <span class="tag">学習</span>
+                                <span class="tag">読書</span>
+                            </div>
+                        </article>
+                        
+                        <article class="blog-post">
+                            <h3>ブログ記事タイトル3</h3>
+                            <div class="blog-meta">
+                                <span class="blog-date">2024-01-17</span>
+                                <span class="blog-category">ゲーム</span>
+                            </div>
+                            <p>ブログ記事の内容...</p>
+                            <div class="blog-tags">
+                                <span class="tag">ゲーム</span>
+                                <span class="tag">レビュー</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="blog-archives" id="archives" style="display: none;">
+                        <h2>Archives</h2>
+                        <ul>
+                            <li><a href="#">2024-01-19 - ブログ記事タイトル1</a></li>
+                            <li><a href="#">2024-01-18 - ブログ記事タイトル2</a></li>
+                            <li><a href="#">2024-01-17 - ブログ記事タイトル3</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-categories" id="categories" style="display: none;">
+                        <h2>Categories</h2>
+                        <div class="category-grid">
+                            <a href="#" class="category-link">プロフィール (5)</a>
+                            <a href="#" class="category-link">趣味 (12)</a>
+                            <a href="#" class="category-link">日記・記事 (8)</a>
+                            <a href="#" class="category-link">筋トレ・散歩 (6)</a>
+                            <a href="#" class="category-link">勉強・読書 (15)</a>
+                            <a href="#" class="category-link">計画・目標 (4)</a>
+                            <a href="#" class="category-link">アニメ・漫画 (10)</a>
+                            <a href="#" class="category-link">ゲーム (20)</a>
+                            <a href="#" class="category-link">アプリ (7)</a>
+                            <a href="#" class="category-link">ニュース (3)</a>
+                            <a href="#" class="category-link">瞑想 (2)</a>
+                            <a href="#" class="category-link">学校生活 (5)</a>
+                            <a href="#" class="category-link">健康 (4)</a>
+                            <a href="#" class="category-link">家族 (3)</a>
+                            <a href="#" class="category-link">生活習慣 (6)</a>
+                            <a href="#" class="category-link">精神疾患 (2)</a>
+                            <a href="#" class="category-link">自己分析 (8)</a>
+                            <a href="#" class="category-link">自分磨き (5)</a>
+                            <a href="#" class="category-link">ネット活動 (9)</a>
+                            <a href="#" class="category-link">人生論 (7)</a>
+                            <a href="#" class="category-link">暮らし (4)</a>
+                            <a href="#" class="category-link">界隈 (6)</a>
+                            <a href="#" class="category-link">お金 (3)</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="content">
+                    <h1>Contact</h1>
+                    <p>Feel free to reach out!</p>
+                    
+                    <div class="contact-info">
+                        <p><strong>Email:</strong> rucy@example.com</p>
+                        <p><strong>Discord:</strong> るーしー#0001</p>
+                        <p><strong>Twitter:</strong> @rucyj</p>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form>
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
+                            <textarea placeholder="Message" required></textarea>
+                            <button type="submit">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
