@@ -192,17 +192,18 @@ function renderSearchResults(projects) {
   `).join('');
 }
 
+// スキルバーのアニメーションのみ IntersectionObserver で制御
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
       entry.target.querySelectorAll('.skill-fill').forEach(bar => {
         bar.style.width = bar.dataset.w + '%';
       });
+      observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0 });
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('.skill-category').forEach(el => observer.observe(el));
 
 loadProjects();
