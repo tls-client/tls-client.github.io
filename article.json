@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "記事タイトルをここに書く",
+    "description": "記事の概要・説明文をここに書いてください。",
+    "thumbnail": "",
+    "tags": ["JavaScript", "Tips"],
+    "date": "2025-03-01",
+    "url": "https://example.com/article/1"
+  },
+  {
+    "id": 2,
+    "title": "2つ目の記事タイトル",
+    "description": "2つ目の記事の概要・説明文をここに書いてください。",
+    "thumbnail": "",
+    "tags": ["TypeScript", "Node.js"],
+    "date": "2025-01-15",
+    "url": "https://example.com/article/2"
+  }
+]
