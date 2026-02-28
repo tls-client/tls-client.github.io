@@ -1,310 +1,265 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Web Developer / Reverse Engineering - るーしーのポートフォリオサイト">
-    <meta name="keywords" content="Web開発,リバースエンジニアリング,ポートフォリオ">
-    <meta name="author" content="るーしー">
-    <title>るーしー - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rucy のポートフォリオ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <!-- 中央ナビゲーション -->
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#blog" class="nav-link">Blog</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                </ul>
-                
-                <!-- 右側ツールバー -->
-                <div class="nav-tools">
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="検索...">
-                        <button class="search-btn">🔍</button>
-                    </div>
-                    <button class="theme-toggle" id="themeToggle">
-                        <span class="theme-icon">🌙</span>
-                    </button>
-                    <button class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Homeセクション -->
-        <section id="home" class="section">
-            <div class="container">
-                <div class="home-content">
-                    <div class="profile-image">
-                        <img src="https://via.placeholder.com/150" alt="プロフィール画像" class="avatar">
-                    </div>
-                    <h1 class="name">るーしー</h1>
-                    <p class="title">Web Developer / Reverse Engineering</p>
-                    <p class="bio">
-                        Web開発とリバースエンジニアリングを専門とするエンジニアです。
-                        技術的な探求心を持ち、常に新しいことに挑戦しています。
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">GitHub</a>
-                        <a href="#" class="social-link">Twitter</a>
-                        <a href="#" class="social-link">LinkedIn</a>
-                        <a href="#" class="social-link">Blog</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ==================== HEADER ==================== -->
+<header>
+  <!-- Left: Hamburger -->
+  <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </button>
 
-        <!-- Projectsセクション -->
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/300x200" alt="プロジェクト1">
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">プロジェクトタイトル1</h3>
-                            <p class="project-description">
-                                これはプロジェクトの説明文です。技術的な詳細や成果について簡潔に説明します。
-                            </p>
-                            <a href="#" class="project-link">GitHub →</a>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/300x200" alt="プロジェクト2">
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">プロジェクトタイトル2</h3>
-                            <p class="project-description">
-                                リバースエンジニアリング関連のプロジェクトです。バイナリ解析や逆コンパイルを行いました。
-                            </p>
-                            <a href="#" class="project-link">GitHub →</a>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/300x200" alt="プロジェクト3">
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">プロジェクトタイトル3</h3>
-                            <p class="project-description">
-                                Webアプリケーション開発プロジェクトです。モダンな技術スタックを使用しています。
-                            </p>
-                            <a href="#" class="project-link">GitHub →</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+  <!-- Right: Nav links + Search + Theme -->
+  <div class="header-right">
+    <nav class="header-nav">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-        <!-- Blogセクション -->
-        <section id="blog" class="section">
-            <div class="container">
-                <h2 class="section-title">Blog</h2>
-                <div class="blog-grid">
-                    <article class="blog-card">
-                        <div class="blog-image">
-                            <img src="https://via.placeholder.com/300x200" alt="ブログ記事1">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <time class="blog-date">2024-02-25</time>
-                                <span class="blog-category">勉強・読書</span>
-                            </div>
-                            <h3 class="blog-title">技術書を読んだ感想</h3>
-                            <div class="blog-tags">
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">学習</span>
-                            </div>
-                            <a href="#" class="blog-link">続きを読む →</a>
-                        </div>
-                    </article>
-                    
-                    <article class="blog-card">
-                        <div class="blog-image">
-                            <img src="https://via.placeholder.com/300x200" alt="ブログ記事2">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <time class="blog-date">2024-02-20</time>
-                                <span class="blog-category">筋トレ・散歩</span>
-                            </div>
-                            <h3 class="blog-title">日々の運動習慣について</h3>
-                            <div class="blog-tags">
-                                <span class="tag">健康</span>
-                                <span class="tag">習慣</span>
-                            </div>
-                            <a href="#" class="blog-link">続きを読む →</a>
-                        </div>
-                    </article>
-                    
-                    <article class="blog-card">
-                        <div class="blog-image">
-                            <img src="https://via.placeholder.com/300x200" alt="ブログ記事3">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <time class="blog-date">2024-02-15</time>
-                                <span class="blog-category">アプリ</span>
-                            </div>
-                            <h3 class="blog-title">開発したアプリの紹介</h3>
-                            <div class="blog-tags">
-                                <span class="tag">開発</span>
-                                <span class="tag">アプリ</span>
-                            </div>
-                            <a href="#" class="blog-link">続きを読む →</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+    <!-- Search button -->
+    <button class="icon-btn" id="searchBtn" aria-label="検索 (Ctrl+K)">
+      <span class="material-icons">search</span>
+    </button>
 
-        <!-- Aboutセクション -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title">About</h2>
-                <div class="about-grid">
-                    <!-- Profile -->
-                    <div class="about-card">
-                        <h3 class="card-title">Profile</h3>
-                        <div class="card-content">
-                            <p><strong>性別:</strong> 男性</p>
-                            <p><strong>年齢:</strong> 20代</p>
-                            <p><strong>職業:</strong> Web Developer</p>
-                            <p><strong>所在地:</strong> 日本</p>
-                        </div>
-                    </div>
+    <!-- Theme toggle -->
+    <button class="icon-btn" id="themeBtn" aria-label="テーマ切替">
+      <span class="material-icons" id="themeIcon">light_mode</span>
+    </button>
+  </div>
+</header>
 
-                    <!-- Hobby -->
-                    <div class="about-card">
-                        <h3 class="card-title">Hobby</h3>
-                        <div class="card-content">
-                            <ul class="hobby-list">
-                                <li>プログラミング</li>
-                                <li>リバースエンジニアリング</li>
-                                <li>技術書を読むこと</li>
-                                <li>筋トレ・散歩</li>
-                                <li>アニメ・漫画</li>
-                                <li>ゲーム</li>
-                            </ul>
-                        </div>
-                    </div>
+<!-- ==================== SEARCH OVERLAY ==================== -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <!-- Input -->
+    <div class="search-input-wrap">
+      <span class="material-icons">search</span>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="タイトル・説明・タグで検索…"
+        autocomplete="off"
+      >
+      <button class="search-close-btn" id="searchCloseBtn">ESC</button>
+    </div>
 
-                    <!-- Life -->
-                    <div class="about-card">
-                        <h3 class="card-title">Life</h3>
-                        <div class="card-content">
-                            <div class="routine">
-                                <p><strong>朝:</strong> 6時に起きて散歩</p>
-                                <p><strong>昼:</strong> 開発作業</p>
-                                <p><strong>夜:</strong> 勉強・読書</p>
-                                <p><strong>就寝:</strong> 23時</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Tag filters -->
+    <div class="search-tags-wrap" id="tagFilters"></div>
 
-                    <!-- Skills -->
-                    <div class="about-card">
-                        <h3 class="card-title">Skills</h3>
-                        <div class="card-content">
-                            <div class="skill-item">
-                                <span class="skill-name">JavaScript</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Python</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">C/C++</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 75%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Assembly</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Results -->
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
 
-                    <!-- Vision -->
-                    <div class="about-card">
-                        <h3 class="card-title">Vision</h3>
-                        <div class="card-content">
-                            <p>技術を通じて社会に貢献したいと思っています。特にセキュリティ分野での専門性を高め、より安全なデジタル社会の実現に貢献することが目標です。</p>
-                        </div>
-                    </div>
+<!-- ==================== DRAWER ==================== -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <span class="drawer-logo">Rucy<span>.</span></span>
+    <button class="drawer-close" id="drawerClose" aria-label="閉じる">✕</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="#home">
+      <span class="material-icons">home</span> Home
+    </a>
+    <a href="#github">
+      <span class="material-icons">code</span> GitHub
+    </a>
+    <a href="#skills">
+      <span class="material-icons">bar_chart</span> Skills
+    </a>
+    <a href="#projects">
+      <span class="material-icons">folder</span> Projects
+    </a>
+    <a href="#contact">
+      <span class="material-icons">mail</span> Contact
+    </a>
+    <a href="#donate">
+      <span class="material-icons">favorite</span> Donate
+    </a>
+  </nav>
+</div>
 
-                    <!-- Philosophy -->
-                    <div class="about-card">
-                        <h3 class="card-title">Philosophy</h3>
-                        <div class="card-content">
-                            <p>「継続は力なり」という言葉を信じています。日々の小さな努力の積み重ねが、大きな成果につながると考えています。常に学び続ける姿勢を大切にしています。</p>
-                        </div>
-                    </div>
+<!-- ==================== MAIN ==================== -->
+<main>
 
-                    <!-- Social Links -->
-                    <div class="about-card">
-                        <h3 class="card-title">Social Links</h3>
-                        <div class="card-content">
-                            <div class="social-grid">
-                                <a href="#" class="social-item">GitHub</a>
-                                <a href="#" class="social-item">Twitter</a>
-                                <a href="#" class="social-item">LinkedIn</a>
-                                <a href="#" class="social-item">Qiita</a>
-                                <a href="#" class="social-item">Zenn</a>
-                                <a href="#" class="social-item">Note</a>
-                            </div>
-                        </div>
-                    </div>
+  <!-- ── HERO ── -->
+  <section class="hero fade-in" id="home">
+    <div class="hero-icon">
+      <!-- アイコン画像があれば: <img src="./assets/icon.png" alt="Rucy"> -->
+      🐱
+    </div>
+    <div>
+      <h1>Rucy.</h1>
+      <div class="role">Full-stack dev / ○○</div>
+    </div>
+    <div class="hero-meta">
+      <span><span class="material-icons">cake</span> 2000/01/01</span>
+      <span><span class="material-icons">place</span> Japan</span>
+    </div>
+    <p class="hero-bio">
+      ここに自己紹介文を書いてください。得意な技術やどんなものを作っているかなど、簡単に書くといいです。
+    </p>
+    <div class="links-row">
+      <a class="link-chip" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      <a class="link-chip" href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+      <!-- 必要なリンクを追加してください -->
+    </div>
+    <div class="profile-grid">
+      <div class="profile-card">
+        <h4>所属</h4>
+        <ul><li>○○</li><li>○○</li></ul>
+      </div>
+      <div class="profile-card">
+        <h4>活動</h4>
+        <ul><li>○○</li><li>○○</li></ul>
+      </div>
+      <div class="profile-card">
+        <h4>趣味</h4>
+        <ul><li>プログラミング</li><li>○○</li></ul>
+      </div>
+      <div class="profile-card">
+        <h4>ポリシー</h4>
+        <ul><li>○○</li><li>○○</li></ul>
+      </div>
+      <div class="profile-card">
+        <h4>実績</h4>
+        <ul><li>○○賞</li><li>○○賞</li></ul>
+      </div>
+    </div>
+  </section>
 
-                    <!-- Contact -->
-                    <div class="about-card">
-                        <h3 class="card-title">Contact</h3>
-                        <div class="card-content">
-                            <p><strong>Email:</strong> contact@example.com</p>
-                            <p><strong>Twitter:</strong> @username</p>
-                            <p><strong>GitHub:</strong> @username</p>
-                            <p>お気軽にご連絡ください。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- ── GITHUB ── -->
+  <section class="fade-in" id="github">
+    <h2>GitHub</h2>
+    <p class="section-desc">開発の活動記録です。</p>
+    <div class="github-box">
+      <!--
+        YOUR_GITHUB_USERNAME を自分のGitHubユーザー名に変更してください
+        例: https://ghchart.rshah.org/7c6af7/octocat
+      -->
+      <img
+        src="https://ghchart.rshah.org/7c6af7/YOUR_GITHUB_USERNAME"
+        alt="GitHub contributions"
+        onerror="this.parentElement.innerHTML='<div class=\'github-placeholder\'>GitHubユーザー名を設定してください（index.htmlを編集）</div>'"
+      >
+    </div>
+  </section>
 
-    <!-- フッター -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 るーしー. All rights reserved.</p>
+  <!-- ── SKILLS ── -->
+  <section class="fade-in" id="skills">
+    <h2>Skills</h2>
+    <p class="section-desc">使用したことがある技術一覧です。</p>
+
+    <div class="skill-category">
+      <h3>Frontend</h3>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">JavaScript</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="80"></div></div>
         </div>
-    </footer>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">TypeScript</span><span class="skill-pct">65%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="65"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">HTML</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">CSS</span><span class="skill-pct">75%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="75"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">React</span><span class="skill-pct">50%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="50"></div></div>
+        </div>
+      </div>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="skill-category">
+      <h3>Backend</h3>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Node.js</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Python</span><span class="skill-pct">60%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="60"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">SQL</span><span class="skill-pct">50%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="50"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3>Others</h3>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Git</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Docker</span><span class="skill-pct">40%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="40"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">GitHub Actions</span><span class="skill-pct">55%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-w="55"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── (rendered by JS from data/projects.json) ── -->
+  <section class="fade-in" id="projects">
+    <h2>Projects</h2>
+    <p class="section-desc">制作物の一覧です。</p>
+    <div class="project-grid" id="projectGrid">
+      <!-- JS で projects.json から動的生成 -->
+      <p style="color:var(--text2);font-size:14px;">読み込み中…</p>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="fade-in" id="contact">
+    <h2>Contact</h2>
+    <p class="section-desc">気軽にご連絡ください。</p>
+    <div class="contact-list">
+      <a href="https://github.com/" target="_blank" rel="noopener">@username (GitHub)</a>
+      <a href="https://twitter.com/" target="_blank" rel="noopener">@username (Twitter)</a>
+      <a href="mailto:your@email.com">your@email.com</a>
+    </div>
+  </section>
+
+  <!-- ── DONATE ── -->
+  <section class="fade-in donate-area" id="donate">
+    <h2>Donate</h2>
+    <p class="section-desc">支援していただけると嬉しいです。</p>
+    <a href="https://www.buymeacoffee.com/" target="_blank" rel="noopener">
+      <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height:50px; border-radius:8px;">
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  2024 - 2026 © Rucy - All rights reserved.
+</footer>
+
+<script src="./js/main.js"></script>
 </body>
 </html>
