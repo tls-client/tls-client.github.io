@@ -582,8 +582,7 @@ footer {
 
 /* ===== SCROLL ANIM ===== */
 .fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 1;
+  transform: none;
 }
 .fade-in.visible { opacity: 1; transform: none; }
