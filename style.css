@@ -119,17 +119,18 @@ header {
 
 .header-nav {
   display: flex;
-  gap: 4px;
+  gap: 2px;
 }
 .header-nav a {
   color: var(--text2);
-  font-size: 13px;
-  padding: 6px 10px;
+  font-size: 12px;
+  padding: 6px 7px;
   border-radius: 8px;
   transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
 }
 .header-nav a:hover { background: var(--bg3); color: var(--text); text-decoration: none; }
-@media (max-width: 540px) { .header-nav { display: none; } }
+
 
 /* ===== SEARCH OVERLAY ===== */
 .search-overlay {
