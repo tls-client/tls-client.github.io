@@ -24,6 +24,7 @@ drawerClose.addEventListener('click', closeDrawer);
 
 document.querySelectorAll('.drawer-nav a').forEach(a =>
   a.addEventListener('click', closeDrawer)
+);
 
 const themeBtn = document.getElementById('themeBtn');
 const themeIcon = document.getElementById('themeIcon');
