@@ -1,7 +1,7 @@
-const hamburger    = document.getElementById('hamburger');
-const drawer       = document.getElementById('drawer');
+const hamburger     = document.getElementById('hamburger');
+const drawer        = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');
-const drawerClose  = document.getElementById('drawerClose');
+const drawerClose   = document.getElementById('drawerClose');
 
 function openDrawer() {
   drawer.classList.add('open');
@@ -21,16 +21,14 @@ hamburger.addEventListener('click', () =>
 );
 drawerOverlay.addEventListener('click', closeDrawer);
 drawerClose.addEventListener('click', closeDrawer);
-
 document.querySelectorAll('.drawer-nav a').forEach(a =>
   a.addEventListener('click', closeDrawer)
 );
 
-const themeBtn = document.getElementById('themeBtn');
+const themeBtn  = document.getElementById('themeBtn');
 const themeIcon = document.getElementById('themeIcon');
 
-const saved = localStorage.getItem('theme') || 'dark';
-applyTheme(saved);
+applyTheme(localStorage.getItem('theme') || 'dark');
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
@@ -43,24 +41,37 @@ themeBtn.addEventListener('click', () => {
   applyTheme(current === 'dark' ? 'light' : 'dark');
 });
 
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
 let allProjects = [];
+let allArticles = [];
 
 async function loadProjects() {
   try {
-    const res  = await fetch('./projects.json');
+    const res = await fetch('./projects.json');
     allProjects = await res.json();
     renderProjects(allProjects);
-    buildTagFilters(allProjects);
+    rebuildTagFilters();
   } catch (e) {
     document.getElementById('projectGrid').innerHTML =
       '<p style="color:var(--text2);font-size:14px;">プロジェクトを読み込めませんでした。</p>';
   }
 }
 
-function formatDate(dateStr) {
-  if (!dateStr) return '';
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+async function loadArticles() {
+  try {
+    const res = await fetch('./articles.json');
+    allArticles = await res.json();
+    renderArticles(allArticles);
+    rebuildTagFilters();
+  } catch (e) {
+    document.getElementById('articleGrid').innerHTML =
+      '<p style="color:var(--text2);font-size:14px;">記事を読み込めませんでした。</p>';
+  }
 }
 
 function renderProjects(projects) {
@@ -90,12 +101,39 @@ function renderProjects(projects) {
   `).join('');
 }
 
-const searchBtn     = document.getElementById('searchBtn');
-const searchOverlay = document.getElementById('searchOverlay');
-const searchInput   = document.getElementById('searchInput');
-const searchResults = document.getElementById('searchResults');
+function renderArticles(articles) {
+  const grid = document.getElementById('articleGrid');
+  if (!articles.length) {
+    grid.innerHTML = '<p style="color:var(--text2);font-size:14px;">該当する記事が見つかりませんでした。</p>';
+    return;
+  }
+  grid.innerHTML = articles.map(a => `
+    <div class="article-card">
+      <div class="thumb">
+        ${a.thumbnail
+          ? `<img src="${a.thumbnail}" alt="${a.title}" loading="lazy">`
+          : `<div class="no-img">No Image</div>`}
+      </div>
+      <div class="info">
+        <div class="article-badge">Article</div>
+        <h3>${a.title}</h3>
+        ${a.date ? `<div class="project-date"><span class="material-icons">calendar_today</span>${formatDate(a.date)}</div>` : ''}
+        <p>${a.description}</p>
+        <div class="tags">${(a.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="project-links">
+          ${a.url ? `<a href="${a.url}" target="_blank" rel="noopener">記事を読む</a>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+const searchBtn      = document.getElementById('searchBtn');
+const searchOverlay  = document.getElementById('searchOverlay');
+const searchInput    = document.getElementById('searchInput');
+const searchResults  = document.getElementById('searchResults');
 const searchCloseBtn = document.getElementById('searchCloseBtn');
-const tagFiltersEl  = document.getElementById('tagFilters');
+const tagFiltersEl   = document.getElementById('tagFilters');
 
 let activeTag = null;
 
@@ -103,7 +141,7 @@ function openSearch() {
   searchOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(() => searchInput.focus(), 100);
-  renderSearchResults(allProjects);
+  renderSearchResults(allProjects, allArticles);
 }
 function closeSearch() {
   searchOverlay.classList.remove('open');
@@ -125,12 +163,11 @@ document.addEventListener('keydown', e => {
 
 searchInput.addEventListener('input', doSearch);
 
-function buildTagFilters(projects) {
-  const allTags = [...new Set(projects.flatMap(p => p.tags || []))].sort();
+function rebuildTagFilters() {
+  const allTags = [...new Set([...allProjects, ...allArticles].flatMap(p => p.tags || []))].sort();
   tagFiltersEl.innerHTML = allTags.map(t =>
     `<span class="tag-filter" data-tag="${t}">${t}</span>`
   ).join('');
-
   tagFiltersEl.querySelectorAll('.tag-filter').forEach(el => {
     el.addEventListener('click', () => {
       if (activeTag === el.dataset.tag) {
@@ -148,62 +185,61 @@ function buildTagFilters(projects) {
 
 function doSearch() {
   const query = searchInput.value.trim().toLowerCase();
-  let results = allProjects;
+  const match = item =>
+    (!activeTag || (item.tags || []).includes(activeTag)) &&
+    (!query || item.title.toLowerCase().includes(query) ||
+               item.description.toLowerCase().includes(query) ||
+               (item.tags || []).some(t => t.toLowerCase().includes(query)));
 
-  if (activeTag) {
-    results = results.filter(p => (p.tags || []).includes(activeTag));
-  }
-
-  if (query) {
-    results = results.filter(p =>
-      p.title.toLowerCase().includes(query) ||
-      p.description.toLowerCase().includes(query) ||
-      (p.tags || []).some(t => t.toLowerCase().includes(query))
-    );
-  }
-
-  renderSearchResults(results);
+  renderSearchResults(allProjects.filter(match), allArticles.filter(match));
 }
 
-function renderSearchResults(projects) {
-  if (!projects.length) {
-    searchResults.innerHTML = '<div class="search-empty">🔍 該当するプロジェクトがありません</div>';
+function renderSearchResults(projects, articles) {
+  const items = [
+    ...projects.map(p => ({ ...p, _type: 'project' })),
+    ...articles.map(a => ({ ...a, _type: 'article' })),
+  ];
+  if (!items.length) {
+    searchResults.innerHTML = '<div class="search-empty">🔍 該当する項目がありません</div>';
     return;
   }
-  searchResults.innerHTML = projects.map(p => `
-    <a class="search-result-item"
-       href="${p.links?.project || p.links?.github || '#'}"
-       target="${p.links?.project || p.links?.github ? '_blank' : '_self'}"
-       rel="noopener">
-      <div class="search-result-thumb">
-        ${p.thumbnail
-          ? `<img src="${p.thumbnail}" alt="${p.title}">`
-          : 'No Image'}
-      </div>
-      <div class="search-result-info">
-        <div class="search-result-title">${p.title}</div>
-        ${p.date ? `<div class="search-result-date">${formatDate(p.date)}</div>` : ''}
-        <div class="search-result-desc">${p.description}</div>
-        <div class="search-result-tags">
-          ${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+  searchResults.innerHTML = items.map(item => {
+    const href = item._type === 'article'
+      ? (item.url || '#')
+      : (item.links?.project || item.links?.github || '#');
+    return `
+      <a class="search-result-item" href="${href}" target="${href !== '#' ? '_blank' : '_self'}" rel="noopener">
+        <div class="search-result-thumb">
+          ${item.thumbnail ? `<img src="${item.thumbnail}" alt="${item.title}">` : 'No Image'}
         </div>
-      </div>
-    </a>
-  `).join('');
+        <div class="search-result-info">
+          <div class="search-result-title">
+            <span class="search-type-badge search-type-${item._type}">${item._type === 'project' ? 'Project' : 'Article'}</span>
+            ${item.title}
+          </div>
+          ${item.date ? `<div class="search-result-date">${formatDate(item.date)}</div>` : ''}
+          <div class="search-result-desc">${item.description}</div>
+          <div class="search-result-tags">
+            ${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
 }
 
-// スキルバーのアニメーションのみ IntersectionObserver で制御
-const observer = new IntersectionObserver((entries) => {
+const skillObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.querySelectorAll('.skill-fill').forEach(bar => {
         bar.style.width = bar.dataset.w + '%';
       });
-      observer.unobserve(entry.target);
+      skillObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0 });
 
-document.querySelectorAll('.skill-category').forEach(el => observer.observe(el));
+document.querySelectorAll('.skill-category').forEach(el => skillObserver.observe(el));
 
 loadProjects();
+loadArticles();
