@@ -1,8 +1,3 @@
-/* ============================================================
-   main.js  –  Drawer / Theme / Search / Projects / Scroll-anim
-   ============================================================ */
-
-/* ── DRAWER ── */
 const hamburger    = document.getElementById('hamburger');
 const drawer       = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');
@@ -27,17 +22,12 @@ hamburger.addEventListener('click', () =>
 drawerOverlay.addEventListener('click', closeDrawer);
 drawerClose.addEventListener('click', closeDrawer);
 
-// Close drawer on nav link click (mobile)
 document.querySelectorAll('.drawer-nav a').forEach(a =>
   a.addEventListener('click', closeDrawer)
-);
 
-
-/* ── THEME TOGGLE ── */
 const themeBtn = document.getElementById('themeBtn');
 const themeIcon = document.getElementById('themeIcon');
 
-// Load saved theme
 const saved = localStorage.getItem('theme') || 'dark';
 applyTheme(saved);
 
@@ -52,13 +42,11 @@ themeBtn.addEventListener('click', () => {
   applyTheme(current === 'dark' ? 'light' : 'dark');
 });
 
-
-/* ── PROJECTS: Load from JSON ── */
 let allProjects = [];
 
 async function loadProjects() {
   try {
-    const res  = await fetch('./data/projects.json');
+    const res  = await fetch('./projects.json');
     allProjects = await res.json();
     renderProjects(allProjects);
     buildTagFilters(allProjects);
@@ -101,8 +89,6 @@ function renderProjects(projects) {
   `).join('');
 }
 
-
-/* ── SEARCH ── */
 const searchBtn     = document.getElementById('searchBtn');
 const searchOverlay = document.getElementById('searchOverlay');
 const searchInput   = document.getElementById('searchInput');
@@ -163,12 +149,10 @@ function doSearch() {
   const query = searchInput.value.trim().toLowerCase();
   let results = allProjects;
 
-  // Tag filter
   if (activeTag) {
     results = results.filter(p => (p.tags || []).includes(activeTag));
   }
 
-  // Keyword filter
   if (query) {
     results = results.filter(p =>
       p.title.toLowerCase().includes(query) ||
@@ -207,13 +191,10 @@ function renderSearchResults(projects) {
   `).join('');
 }
 
-
-/* ── SCROLL ANIMATION & SKILL BARS ── */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      // Animate skill bars when they come into view
       entry.target.querySelectorAll('.skill-fill').forEach(bar => {
         bar.style.width = bar.dataset.w + '%';
       });
@@ -223,6 +204,4 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-
-/* ── INIT ── */
 loadProjects();
