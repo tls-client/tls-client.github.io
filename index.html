@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rucy のポートフォリオ</title>
+  <title>るーしーのポートフォリオ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,14 +11,10 @@
 </head>
 <body>
 
-<!-- ==================== HEADER ==================== -->
 <header>
-  <!-- Left: Hamburger -->
   <button class="hamburger" id="hamburger" aria-label="メニューを開く">
     <span></span><span></span><span></span>
   </button>
-
-  <!-- Right: Nav links + Search + Theme -->
   <div class="header-right">
     <nav class="header-nav">
       <a href="#home">Home</a>
@@ -26,42 +22,35 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <!-- Search button -->
     <button class="icon-btn" id="searchBtn" aria-label="検索 (Ctrl+K)">
       <span class="material-icons">search</span>
     </button>
 
-    <!-- Theme toggle -->
     <button class="icon-btn" id="themeBtn" aria-label="テーマ切替">
       <span class="material-icons" id="themeIcon">light_mode</span>
     </button>
   </div>
 </header>
 
-<!-- ==================== SEARCH OVERLAY ==================== -->
 <div class="search-overlay" id="searchOverlay">
   <div class="search-box">
-    <!-- Input -->
     <div class="search-input-wrap">
       <span class="material-icons">search</span>
       <input
         type="text"
         id="searchInput"
-        placeholder="タイトル・説明・タグで検索…"
+        placeholder="検索"
         autocomplete="off"
       >
       <button class="search-close-btn" id="searchCloseBtn">ESC</button>
     </div>
 
-    <!-- Tag filters -->
     <div class="search-tags-wrap" id="tagFilters"></div>
 
-    <!-- Results -->
     <div class="search-results" id="searchResults"></div>
   </div>
 </div>
 
-<!-- ==================== DRAWER ==================== -->
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-header">
@@ -90,76 +79,57 @@
   </nav>
 </div>
 
-<!-- ==================== MAIN ==================== -->
 <main>
-
-  <!-- ── HERO ── -->
   <section class="hero fade-in" id="home">
     <div class="hero-icon">
-      <!-- アイコン画像があれば: <img src="./assets/icon.png" alt="Rucy"> -->
       🐱
     </div>
     <div>
-      <h1>Rucy.</h1>
-      <div class="role">Full-stack dev / ○○</div>
+      <h1>Rucy</h1>
+      <div class="role">Web Developer and Reverse Engineering</div>
     </div>
     <div class="hero-meta">
-      <span><span class="material-icons">cake</span> 2000/01/01</span>
+      <span><span class="material-icons">cake</span> 2008/07/01</span>
       <span><span class="material-icons">place</span> Japan</span>
     </div>
     <p class="hero-bio">
-      ここに自己紹介文を書いてください。得意な技術やどんなものを作っているかなど、簡単に書くといいです。
+      主にJavaScriptとTypeScriptを中心にWeb開発を行う個人開発者です。
     </p>
     <div class="links-row">
-      <a class="link-chip" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-      <a class="link-chip" href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
-      <!-- 必要なリンクを追加してください -->
+      <a class="link-chip" href="https://github.com/tls-client" target="_blank" rel="noopener">GitHub</a>
+      <a class="link-chip" href="https://twitter.com/rucyg" target="_blank" rel="noopener">Twitter</a>
     </div>
     <div class="profile-grid">
       <div class="profile-card">
         <h4>所属</h4>
-        <ul><li>○○</li><li>○○</li></ul>
-      </div>
-      <div class="profile-card">
-        <h4>活動</h4>
-        <ul><li>○○</li><li>○○</li></ul>
+        <ul><li>どこにも所属してないのでdmにてご招待お待ちしております</li></ul>
       </div>
       <div class="profile-card">
         <h4>趣味</h4>
-        <ul><li>プログラミング</li><li>○○</li></ul>
-      </div>
-      <div class="profile-card">
-        <h4>ポリシー</h4>
-        <ul><li>○○</li><li>○○</li></ul>
+        <ul><li>プログラミング</li><li>ゲーム</li><li>アニメ</li><li>旅行</li><li>読書</li></ul>
       </div>
       <div class="profile-card">
         <h4>実績</h4>
-        <ul><li>○○賞</li><li>○○賞</li></ul>
+        <ul><li>YouTubeコメ欄荒らし売名王としてチャンネル登録者6100人</li><li>Twitter挨拶界隈にて一週間弱でフォロワー1000人超</li><li>discord界隈にて雑談鯖4000人&shop鯖3000人&nsfw鯖2500人</li></ul>
       </div>
     </div>
   </section>
 
-  <!-- ── GITHUB ── -->
   <section class="fade-in" id="github">
     <h2>GitHub</h2>
-    <p class="section-desc">開発の活動記録です。</p>
+    <p class="section-desc">開発の活動記録</p>
     <div class="github-box">
-      <!--
-        YOUR_GITHUB_USERNAME を自分のGitHubユーザー名に変更してください
-        例: https://ghchart.rshah.org/7c6af7/octocat
-      -->
       <img
-        src="https://ghchart.rshah.org/7c6af7/YOUR_GITHUB_USERNAME"
+        src="https://ghchart.rshah.org/7c6af7/tls-client"
         alt="GitHub contributions"
         onerror="this.parentElement.innerHTML='<div class=\'github-placeholder\'>GitHubユーザー名を設定してください（index.htmlを編集）</div>'"
       >
     </div>
   </section>
 
-  <!-- ── SKILLS ── -->
   <section class="fade-in" id="skills">
     <h2>Skills</h2>
-    <p class="section-desc">使用したことがある技術一覧です。</p>
+    <p class="section-desc">使用したことがある技術一覧</p>
 
     <div class="skill-category">
       <h3>Frontend</h3>
@@ -224,32 +194,26 @@
     </div>
   </section>
 
-  <!-- ── PROJECTS ── (rendered by JS from data/projects.json) ── -->
   <section class="fade-in" id="projects">
     <h2>Projects</h2>
-    <p class="section-desc">制作物の一覧です。</p>
+    <p class="section-desc">制作物一覧</p>
     <div class="project-grid" id="projectGrid">
-      <!-- JS で projects.json から動的生成 -->
       <p style="color:var(--text2);font-size:14px;">読み込み中…</p>
     </div>
   </section>
 
-  <!-- ── CONTACT ── -->
   <section class="fade-in" id="contact">
     <h2>Contact</h2>
-    <p class="section-desc">気軽にご連絡ください。</p>
+    <p class="section-desc">気軽にご連絡ください</p>
     <div class="contact-list">
-      <a href="https://github.com/" target="_blank" rel="noopener">@username (GitHub)</a>
-      <a href="https://twitter.com/" target="_blank" rel="noopener">@username (Twitter)</a>
-      <a href="mailto:your@email.com">your@email.com</a>
+      <a href="https://twitter.com/rucyg" target="_blank" rel="noopener">@rucyg (Twitter)</a>
     </div>
   </section>
 
-  <!-- ── DONATE ── -->
   <section class="fade-in donate-area" id="donate">
     <h2>Donate</h2>
-    <p class="section-desc">支援していただけると嬉しいです。</p>
-    <a href="https://www.buymeacoffee.com/" target="_blank" rel="noopener">
+    <p class="section-desc">支援していただけると嬉しいです</p>
+    <a href="https://www.buymeacoffee.com/rucy" target="_blank" rel="noopener">
       <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height:50px; border-radius:8px;">
     </a>
   </section>
@@ -257,7 +221,7 @@
 </main>
 
 <footer>
-  2024 - 2026 © Rucy - All rights reserved.
+  2026 © Rucy - All rights reserved.
 </footer>
 
 <script src="./main.js"></script>
