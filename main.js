@@ -200,7 +200,7 @@ function renderSearchResults(projects, articles) {
     ...articles.map(a => ({ ...a, _type: 'article' })),
   ];
   if (!items.length) {
-    searchResults.innerHTML = '<div class="search-empty">🔍 該当する項目がありません</div>';
+    searchResults.innerHTML = '<div class="search-empty">該当する項目がありません</div>';
     return;
   }
   searchResults.innerHTML = items.map(item => {
