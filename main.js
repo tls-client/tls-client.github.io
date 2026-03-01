@@ -64,7 +64,7 @@ async function loadProjects() {
 
 async function loadArticles() {
   try {
-    const res = await fetch('./article.json');
+    const res = await fetch('./articles.json');
     allArticles = await res.json();
     renderArticles(allArticles);
     rebuildTagFilters();
