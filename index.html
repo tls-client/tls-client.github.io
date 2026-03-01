@@ -46,12 +46,7 @@
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-header">
-    <div class="drawer-logo">
-      <div class="drawer-logo-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-      </div>
-      Portfolio
-    </div>
+    <span class="drawer-logo">Rucy<span>.</span></span>
     <button class="drawer-close" id="drawerClose" aria-label="閉じる">✕</button>
   </div>
   <nav class="drawer-nav">
@@ -60,12 +55,44 @@
     <a href="#skills"><span class="material-icons">bar_chart</span> Skills</a>
     <a href="#projects"><span class="material-icons">folder</span> Projects</a>
     <a href="#articles"><span class="material-icons">article</span> Articles</a>
-    <div class="drawer-sub">
-      <a href="#articles" class="drawer-sub-item"><span class="material-icons">inventory_2</span> Archives</a>
-      <a href="#articles" class="drawer-sub-item"><span class="material-icons">label</span> Categories</a>
-    </div>
     <a href="#contact"><span class="material-icons">mail</span> Contact</a>
     <a href="#donate"><span class="material-icons">favorite</span> Donate</a>
+
+    <div class="drawer-section-label">Articles</div>
+
+    <button class="drawer-accordion" id="archiveToggle">
+      <span class="material-icons">inventory_2</span> Archives
+      <span class="material-icons drawer-chevron">expand_more</span>
+    </button>
+    <div class="drawer-panel" id="archivePanel">
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-01">2026年1月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-02">2026年2月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-03">2026年3月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-04">2026年4月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-05">2026年5月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-06">2026年6月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-07">2026年7月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-08">2026年8月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-09">2026年9月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-10">2026年10月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-11">2026年11月</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="archive" data-filter-value="2026-12">2026年12月</a>
+    </div>
+
+    <button class="drawer-accordion" id="categoryToggle">
+      <span class="material-icons">label</span> Categories
+      <span class="material-icons drawer-chevron">expand_more</span>
+    </button>
+    <div class="drawer-panel" id="categoryPanel">
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="日記">日記</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="パソコン">パソコン</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="ニュース">ニュース</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="ゲーム">ゲーム</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="アニメ">アニメ</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="アプリ">アプリ</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="筋トレ">筋トレ</a>
+      <a href="#articles" class="drawer-panel-item" data-filter-type="category" data-filter-value="旅行">旅行</a>
+    </div>
   </nav>
 </div>
 
