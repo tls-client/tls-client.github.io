@@ -240,3 +240,38 @@ document.querySelectorAll('.skill-category').forEach(el => skillObserver.observe
 
 loadProjects();
 loadArticles();
+
+const archiveToggle = document.getElementById('archiveToggle');
+const archivePanel  = document.getElementById('archivePanel');
+const categoryToggle = document.getElementById('categoryToggle');
+const categoryPanel  = document.getElementById('categoryPanel');
+
+archiveToggle.addEventListener('click', () => {
+  const isOpen = archivePanel.classList.toggle('open');
+  archiveToggle.classList.toggle('open', isOpen);
+});
+categoryToggle.addEventListener('click', () => {
+  const isOpen = categoryPanel.classList.toggle('open');
+  categoryToggle.classList.toggle('open', isOpen);
+});
+
+document.querySelectorAll('.drawer-panel-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const type  = item.dataset.filterType;
+    const value = item.dataset.filterValue;
+
+    document.querySelectorAll('.drawer-panel-item').forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+    closeDrawer();
+
+    if (type === 'archive') {
+      const filtered = allArticles.filter(a => a.date && a.date.startsWith(value));
+      renderArticles(filtered);
+    } else if (type === 'category') {
+      const filtered = allArticles.filter(a => (a.tags || []).includes(value));
+      renderArticles(filtered);
+    }
+
+    document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
+  });
+});
