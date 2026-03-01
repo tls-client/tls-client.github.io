@@ -64,7 +64,7 @@ async function loadProjects() {
 
 async function loadArticles() {
   try {
-    const res = await fetch('./articles.json');
+    const res = await fetch('./article.json');
     allArticles = await res.json();
     renderArticles(allArticles);
     rebuildTagFilters();
@@ -80,8 +80,11 @@ function renderProjects(projects) {
     grid.innerHTML = '<p style="color:var(--text2);font-size:14px;">該当するプロジェクトが見つかりませんでした。</p>';
     return;
   }
-  grid.innerHTML = projects.map(p => `
-    <div class="project-card">
+  grid.innerHTML = projects.map(p => {
+    const href = p.links?.project || p.links?.github || '';
+    const open = href ? `<a class="project-card project-card--link" href="${href}" target="_blank" rel="noopener">` : '<div class="project-card">';
+    const close = href ? '</a>' : '</div>';
+    return open + `
       <div class="thumb">
         ${p.thumbnail
           ? `<img src="${p.thumbnail}" alt="${p.title}" loading="lazy">`
@@ -92,13 +95,9 @@ function renderProjects(projects) {
         ${p.date ? `<div class="project-date"><span class="material-icons">calendar_today</span>${formatDate(p.date)}</div>` : ''}
         <p>${p.description}</p>
         <div class="tags">${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
-        <div class="project-links">
-          ${p.links?.project ? `<a href="${p.links.project}" target="_blank" rel="noopener">View Project</a>` : ''}
-          ${p.links?.github  ? `<a href="${p.links.github}"  target="_blank" rel="noopener">GitHub</a>`       : ''}
-        </div>
       </div>
-    </div>
-  `).join('');
+    ` + close;
+  }).join('');
 }
 
 function renderArticles(articles) {
@@ -107,8 +106,9 @@ function renderArticles(articles) {
     grid.innerHTML = '<p style="color:var(--text2);font-size:14px;">該当する記事が見つかりませんでした。</p>';
     return;
   }
-  grid.innerHTML = articles.map(a => `
-    <div class="article-card">
+  grid.innerHTML = articles.map(a => {
+    const href = a.url || `https://tls-client.github.io/#article/${encodeURIComponent(a.title)}`;
+    return `<a class="article-card article-card--link" href="${href}" target="_blank" rel="noopener">
       <div class="thumb">
         ${a.thumbnail
           ? `<img src="${a.thumbnail}" alt="${a.title}" loading="lazy">`
@@ -120,12 +120,9 @@ function renderArticles(articles) {
         ${a.date ? `<div class="project-date"><span class="material-icons">calendar_today</span>${formatDate(a.date)}</div>` : ''}
         <p>${a.description}</p>
         <div class="tags">${(a.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
-        <div class="project-links">
-          ${a.url ? `<a href="${a.url}" target="_blank" rel="noopener">記事を読む</a>` : ''}
-        </div>
       </div>
-    </div>
-  `).join('');
+    </a>`;
+  }).join('');
 }
 
 const searchBtn      = document.getElementById('searchBtn');
@@ -200,7 +197,7 @@ function renderSearchResults(projects, articles) {
     ...articles.map(a => ({ ...a, _type: 'article' })),
   ];
   if (!items.length) {
-    searchResults.innerHTML = '<div class="search-empty">該当する項目がありません</div>';
+    searchResults.innerHTML = '<div class="search-empty">🔍 該当する項目がありません</div>';
     return;
   }
   searchResults.innerHTML = items.map(item => {
