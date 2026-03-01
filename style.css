@@ -507,8 +507,15 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   border: 1px solid var(--border);
 }
 
-.project-links { display: flex; gap: 8px; }
-.project-links a {
+.project-card--link,
+.article-card--link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.project-card--link:hover { text-decoration: none; }
+.article-card--link:hover { text-decoration: none; }
   font-size: 12px;
   padding: 5px 12px;
   border-radius: 6px;
