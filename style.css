@@ -395,13 +395,14 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 }
 .hero-top {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 20px;
 }
 .hero-identity {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding-top: 10px;
 }
 .hero-icon {
   width: 80px;
