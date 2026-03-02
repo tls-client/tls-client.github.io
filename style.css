@@ -402,7 +402,7 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-top: 14px;
+  padding-top: 20px;
 }
 .hero-icon {
   width: 80px;
