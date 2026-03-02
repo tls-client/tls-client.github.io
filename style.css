@@ -379,7 +379,7 @@ header {
 main {
   max-width: 800px;
   margin: 0 auto;
-  padding: 80px 24px 60px;
+  padding: 76px 24px 60px;
 }
 
 section { margin-bottom: 72px; }
@@ -391,7 +391,7 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-top: 20px;
+  padding-top: 0;
 }
 .hero-top {
   display: flex;
