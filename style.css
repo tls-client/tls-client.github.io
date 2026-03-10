@@ -466,26 +466,26 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 
 .hero-bio { color: var(--text2); font-size: 14px; line-height: 1.7; }
 
-.links-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.links-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .sns-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 28px;
-  border-radius: 50px;
-  background: var(--bg2);
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--bg3);
   border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 15px;
-  font-weight: 500;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .sns-btn:hover {
-  background: var(--bg3);
-  border-color: var(--accent2);
-  transform: translateY(-1px);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
   text-decoration: none;
-  color: var(--text);
 }
 .sns-btn svg { flex-shrink: 0; }
 
