@@ -53,19 +53,20 @@ header {
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
   padding: 0 16px;
   height: 60px;
   transition: background 0.3s, border-color 0.3s;
 }
 
+/* ハンバーガー：左端 */
 .hamburger {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   background: none;
   border: none;
@@ -79,18 +80,39 @@ header {
   display: block;
   width: 100%;
   height: 2px;
-  background: var(--text);
+  background: var(--text2);
   border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s, background 0.2s;
 }
+.hamburger:hover span { background: var(--text); }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.header-right {
+/* ナビ：ハンバーガーの右 */
+.header-nav {
+  display: flex;
+  gap: 0;
+  flex: 1;
+}
+.header-nav a {
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.header-nav a:hover { background: var(--bg3); color: var(--text); text-decoration: none; }
+
+/* アクションボタン：右端 */
+.header-actions {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .icon-btn {
@@ -442,20 +464,29 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 
 .hero-bio { color: var(--text2); font-size: 14px; line-height: 1.7; }
 
-.links-row { display: flex; flex-wrap: wrap; gap: 8px; }
-.link-chip {
+.links-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.sns-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  background: var(--bg3);
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: var(--bg2);
   border: 1px solid var(--border);
   color: var(--text2);
   font-size: 13px;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
 }
-.link-chip:hover { background: var(--accent); color: #fff; border-color: var(--accent); text-decoration: none; }
+.sns-btn:hover {
+  background: var(--bg3);
+  color: var(--text);
+  border-color: var(--accent2);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+.sns-btn svg { flex-shrink: 0; opacity: 0.8; }
+.sns-btn:hover svg { opacity: 1; }
 
 /* ── PROFILE TOP CARDS ── */
 .profile-top-cards {
@@ -911,31 +942,42 @@ footer {
 }
 
 @media (max-width: 640px) {
-  /* ヘッダー下にナビバーを追加表示 */
+  /* インラインナビを非表示にして下のバーに表示 */
   .header-nav {
     display: flex;
     position: fixed;
     top: 60px;
     left: 0; right: 0;
     z-index: 99;
-    background: var(--bg2);
+    background: color-mix(in srgb, var(--bg2) 95%, transparent);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     justify-content: space-around;
-    padding: 0 4px;
+    padding: 0;
     gap: 0;
     overflow-x: auto;
     scrollbar-width: none;
+    /* インラインのflex: 1を上書き */
+    flex: none;
+    margin-left: 0;
   }
   .header-nav::-webkit-scrollbar { display: none; }
   .header-nav a {
     flex: 1;
     text-align: center;
-    padding: 10px 6px;
+    padding: 10px 8px;
     font-size: 12px;
+    font-weight: 500;
     border-radius: 0;
     white-space: nowrap;
+    color: var(--text2);
+    border-bottom: 2px solid transparent;
   }
-  /* ナビバー分だけmainを下げる */
+  .header-nav a:hover {
+    background: none;
+    color: var(--text);
+    border-bottom-color: var(--accent2);
+  }
   main { padding-top: 120px; }
   .hero h1 { font-size: 22px; }
 }
