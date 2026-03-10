@@ -1,3 +1,11 @@
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 const hamburger     = document.getElementById('hamburger');
 const drawer        = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');
@@ -87,14 +95,14 @@ function renderProjects(projects) {
     return open + `
       <div class="thumb">
         ${p.thumbnail
-          ? `<img src="${p.thumbnail}" alt="${p.title}" loading="lazy">`
+          ? `<img src="${esc(p.thumbnail)}" alt="${esc(p.title)}" loading="lazy">`
           : `<div class="no-img">No Image</div>`}
       </div>
       <div class="info">
-        <h3>${p.title}</h3>
+        <h3>${esc(p.title)}</h3>
         ${p.date ? `<div class="project-date"><span class="material-icons">calendar_today</span>${formatDate(p.date)}</div>` : ''}
-        <p>${p.description}</p>
-        <div class="tags">${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <p>${esc(p.description)}</p>
+        <div class="tags">${(p.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
       </div>
     ` + close;
   }).join('');
@@ -108,18 +116,18 @@ function renderArticles(articles) {
   }
   grid.innerHTML = articles.map(a => {
     const href = a.url || `https://tls-client.github.io/#article/${encodeURIComponent(a.title)}`;
-    return `<a class="article-card article-card--link" href="${href}" target="_blank" rel="noopener">
+    return `<a class="article-card article-card--link" href="${esc(href)}" target="_blank" rel="noopener">
       <div class="thumb">
         ${a.thumbnail
-          ? `<img src="${a.thumbnail}" alt="${a.title}" loading="lazy">`
+          ? `<img src="${esc(a.thumbnail)}" alt="${esc(a.title)}" loading="lazy">`
           : `<div class="no-img">No Image</div>`}
       </div>
       <div class="info">
         <div class="article-badge">Article</div>
-        <h3>${a.title}</h3>
+        <h3>${esc(a.title)}</h3>
         ${a.date ? `<div class="project-date"><span class="material-icons">calendar_today</span>${formatDate(a.date)}</div>` : ''}
-        <p>${a.description}</p>
-        <div class="tags">${(a.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <p>${esc(a.description)}</p>
+        <div class="tags">${(a.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
       </div>
     </a>`;
   }).join('');
@@ -205,19 +213,19 @@ function renderSearchResults(projects, articles) {
       ? (item.url || '#')
       : (item.links?.project || item.links?.github || '#');
     return `
-      <a class="search-result-item" href="${href}" target="${href !== '#' ? '_blank' : '_self'}" rel="noopener">
+      <a class="search-result-item" href="${esc(href)}" target="${href !== '#' ? '_blank' : '_self'}" rel="noopener">
         <div class="search-result-thumb">
-          ${item.thumbnail ? `<img src="${item.thumbnail}" alt="${item.title}">` : 'No Image'}
+          ${item.thumbnail ? `<img src="${esc(item.thumbnail)}" alt="${esc(item.title)}">` : 'No Image'}
         </div>
         <div class="search-result-info">
           <div class="search-result-title">
             <span class="search-type-badge search-type-${item._type}">${item._type === 'project' ? 'Project' : 'Article'}</span>
-            ${item.title}
+            ${esc(item.title)}
           </div>
           ${item.date ? `<div class="search-result-date">${formatDate(item.date)}</div>` : ''}
-          <div class="search-result-desc">${item.description}</div>
+          <div class="search-result-desc">${esc(item.description)}</div>
           <div class="search-result-tags">
-            ${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+            ${(item.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}
           </div>
         </div>
       </a>
@@ -237,6 +245,17 @@ const skillObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0 });
 
 document.querySelectorAll('.skill-category, .skill-category-card').forEach(el => skillObserver.observe(el));
+
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
 loadProjects();
 loadArticles();
@@ -278,6 +297,14 @@ document.querySelectorAll('.drawer-panel-item').forEach(item => {
 
 async function loadGitHubStats() {
   try {
+    const cached = sessionStorage.getItem('gh_stats');
+    if (cached) {
+      const { followers, repos, stars } = JSON.parse(cached);
+      document.getElementById('ghFollowers').textContent = followers;
+      document.getElementById('ghRepos').textContent     = repos;
+      document.getElementById('ghStars').textContent     = stars;
+      return;
+    }
     const [userRes, reposRes] = await Promise.all([
       fetch('https://api.github.com/users/tls-client'),
       fetch('https://api.github.com/users/tls-client/repos?per_page=100')
@@ -285,18 +312,31 @@ async function loadGitHubStats() {
     const user  = await userRes.json();
     const repos = await reposRes.json();
 
-    document.getElementById('ghFollowers').textContent = user.followers ?? '—';
-    document.getElementById('ghRepos').textContent     = user.public_repos ?? '—';
-
+    const followers = user.followers ?? '—';
+    const repoCount = user.public_repos ?? '—';
     const stars = Array.isArray(repos)
       ? repos.reduce((sum, r) => sum + r.stargazers_count, 0)
       : 0;
-    document.getElementById('ghStars').textContent = stars;
+
+    document.getElementById('ghFollowers').textContent = followers;
+    document.getElementById('ghRepos').textContent     = repoCount;
+    document.getElementById('ghStars').textContent     = stars;
+
+    sessionStorage.setItem('gh_stats', JSON.stringify({ followers, repos: repoCount, stars }));
   } catch(e) {}
 }
 
 async function loadCommitGraph() {
   try {
+    const cached = sessionStorage.getItem('gh_commits');
+    if (cached) {
+      const { counts, total, maxDay, lastDay } = JSON.parse(cached);
+      document.getElementById('ghCommitsSub').textContent   = `Last 30 days · Max/day ${maxDay}`;
+      document.getElementById('ghTotalCommits').textContent = `${total} commits total`;
+      document.getElementById('ghLastDay').textContent      = `Last day ${lastDay} commits`;
+      drawCommitChart(counts);
+      return;
+    }
     const res   = await fetch('https://api.github.com/users/tls-client/repos?per_page=100');
     const repos = await res.json();
     if (!Array.isArray(repos)) return;
@@ -322,10 +362,11 @@ async function loadCommitGraph() {
     const maxDay = Math.max(...counts);
     const lastDay = counts[counts.length - 1];
 
-    document.getElementById('ghCommitsSub').textContent = `Last ${days} days · Max/day ${maxDay}`;
+    document.getElementById('ghCommitsSub').textContent   = `Last ${days} days · Max/day ${maxDay}`;
     document.getElementById('ghTotalCommits').textContent = `${total} commits total`;
-    document.getElementById('ghLastDay').textContent = `Last day ${lastDay} commits`;
+    document.getElementById('ghLastDay').textContent      = `Last day ${lastDay} commits`;
 
+    sessionStorage.setItem('gh_commits', JSON.stringify({ counts, total, maxDay, lastDay }));
     drawCommitChart(counts);
   } catch(e) {}
 }
