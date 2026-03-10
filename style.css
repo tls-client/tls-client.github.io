@@ -401,7 +401,7 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 .hero-identity {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
   padding-top: 6px;
 }
 .hero-icon {
@@ -416,12 +416,29 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   flex-shrink: 0;
 }
 .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
-.hero h1 { font-size: 28px; font-weight: 700; }
-.hero .role { color: var(--text2); font-size: 13px; }
-
-.hero-meta { display: flex; gap: 14px; flex-wrap: wrap; color: var(--text2); font-size: 13px; margin-top: 2px; }
-.hero-meta span { display: flex; align-items: center; gap: 4px; }
-.hero-meta .material-icons { font-size: 14px; color: var(--accent2); }
+.hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.hero .role {
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+.hero-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--text2);
+  font-size: 12px;
+  margin-top: 8px;
+  opacity: 0.75;
+}
+.hero-meta span { display: flex; align-items: center; gap: 3px; }
+.hero-meta .material-icons { font-size: 13px; color: var(--accent2); }
 
 .hero-bio { color: var(--text2); font-size: 14px; line-height: 1.7; }
 
@@ -894,7 +911,33 @@ footer {
 }
 
 @media (max-width: 640px) {
-  .header-nav { display: none; }
+  /* ヘッダー下にナビバーを追加表示 */
+  .header-nav {
+    display: flex;
+    position: fixed;
+    top: 60px;
+    left: 0; right: 0;
+    z-index: 99;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    justify-content: space-around;
+    padding: 0 4px;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .header-nav::-webkit-scrollbar { display: none; }
+  .header-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 6px;
+    font-size: 12px;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+  /* ナビバー分だけmainを下げる */
+  main { padding-top: 120px; }
+  .hero h1 { font-size: 22px; }
 }
 @media (max-width: 500px) {
   .footer-inner { flex-direction: column; }
