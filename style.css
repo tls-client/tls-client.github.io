@@ -118,7 +118,7 @@ header {
   color: var(--text);
   font-size: 13px;
   font-weight: 600;
-  padding: 6px 10px;
+  padding: 6px 7px;
   border-radius: 6px;
   transition: background 0.2s, color 0.2s;
   white-space: nowrap;
@@ -402,7 +402,7 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-top: 20px;
+  padding-top: 6px;
 }
 .hero-icon {
   width: 80px;
@@ -489,25 +489,106 @@ h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   vertical-align: middle;
 }
 
-.github-box {
-  background: var(--card-bg);
+/* ── GITHUB CARDS ── */
+.github-profile-card {
+  background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  text-align: center;
-  transition: background 0.3s;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
 }
-.github-box img { width: 100%; border-radius: 8px; }
-.github-placeholder { color: var(--text2); font-size: 14px; padding: 32px; }
+.github-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.github-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+.github-username { font-size: 18px; font-weight: 700; color: var(--text); }
+.github-handle { font-size: 13px; color: var(--text2); margin-top: 2px; }
+.github-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.github-stat {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.github-stat .material-icons { font-size: 22px; color: var(--text2); }
+.github-stat-label { font-size: 11px; color: var(--text2); }
+.github-stat-value { font-size: 22px; font-weight: 700; color: var(--text); }
+
+.github-commits-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+.github-commits-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.github-commits-sub { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
+.github-chart-wrap {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.github-commits-footer { display: flex; flex-direction: column; gap: 4px; }
+.github-commits-footer span { font-size: 13px; color: var(--text2); }
+
+/* ── SKILL ICON GRID ── */
+.skill-category-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.skill-category-card h3 {
+  font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 16px;
+}
+.skill-divider {
+  border: none; border-top: 1px solid var(--border); margin-bottom: 24px;
+}
+.skill-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 16px;
+}
+.skill-icon-item {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px; text-align: center;
+}
+.skill-icon-item img { width: 52px; height: 52px; object-fit: contain; }
+.skill-icon-name { font-size: 13px; color: var(--text2); }
+.skill-icon-item .skill-bar {
+  width: 60px; height: 4px; background: var(--bg3);
+  border-radius: 2px; overflow: hidden;
+}
+.skill-icon-item .skill-fill {
+  height: 100%; border-radius: 2px; width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 1s ease;
+}
+.skill-icon-pct { font-size: 13px; font-weight: 700; color: var(--text); }
 
 .skill-category { margin-bottom: 28px; }
 .skill-category h3 {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 14px;
+  font-size: 13px; font-weight: 600; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;
 }
 .skill-list { display: flex; flex-direction: column; gap: 10px; }
 .skill-item { display: flex; flex-direction: column; gap: 5px; }
