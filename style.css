@@ -89,11 +89,13 @@ header {
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ナビ：ハンバーガーの右 */
+/* ナビ：中央 */
 .header-nav {
   display: flex;
   gap: 0;
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .header-nav a {
   color: var(--text2);
