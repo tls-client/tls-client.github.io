@@ -941,43 +941,18 @@ footer {
 }
 
 @media (max-width: 640px) {
-  /* インラインナビを非表示にして下のバーに表示 */
   .header-nav {
-    display: flex;
-    position: fixed;
-    top: 60px;
-    left: 0; right: 0;
-    z-index: 99;
-    background: color-mix(in srgb, var(--bg2) 95%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    justify-content: space-around;
-    padding: 0;
-    gap: 0;
     overflow-x: auto;
     scrollbar-width: none;
-    /* インラインのflex: 1を上書き */
-    flex: none;
-    margin-left: 0;
+    flex-shrink: 1;
+    min-width: 0;
   }
   .header-nav::-webkit-scrollbar { display: none; }
   .header-nav a {
-    flex: 1;
-    text-align: center;
-    padding: 10px 8px;
     font-size: 12px;
-    font-weight: 500;
-    border-radius: 0;
-    white-space: nowrap;
-    color: var(--text2);
-    border-bottom: 2px solid transparent;
+    padding: 6px 7px;
   }
-  .header-nav a:hover {
-    background: none;
-    color: var(--text);
-    border-bottom-color: var(--accent2);
-  }
-  main { padding-top: 120px; }
+  main { padding-top: 76px; }
   .hero h1 { font-size: 22px; }
 }
 @media (max-width: 500px) {
