@@ -973,3 +973,110 @@ footer {
   .footer-right { text-align: left; }
   .footer-powered { justify-content: flex-start; }
 }
+
+/* ===== ARTICLE DETAIL OVERLAY ===== */
+.article-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: var(--bg);
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+.article-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.article-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.article-detail-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+  z-index: 1;
+}
+
+.article-detail-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text2);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: background 0.2s, color 0.2s;
+}
+.article-detail-close:hover { background: var(--bg3); color: var(--text); }
+.article-detail-close .material-icons { font-size: 18px; }
+
+.article-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.article-detail-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.article-detail-date .material-icons { font-size: 14px; }
+
+.article-detail-body h1 {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 32px;
+  color: var(--text);
+}
+
+.article-detail-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 36px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.article-detail-content h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 28px 0 8px;
+  color: var(--accent2);
+}
+.article-detail-content p {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.article-detail-content ul,
+.article-detail-content ol {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.article-detail-content li {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.9;
+}
