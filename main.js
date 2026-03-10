@@ -236,7 +236,7 @@ const skillObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0 });
 
-document.querySelectorAll('.skill-category').forEach(el => skillObserver.observe(el));
+document.querySelectorAll('.skill-category, .skill-category-card').forEach(el => skillObserver.observe(el));
 
 loadProjects();
 loadArticles();
@@ -275,3 +275,103 @@ document.querySelectorAll('.drawer-panel-item').forEach(item => {
     document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+async function loadGitHubStats() {
+  try {
+    const [userRes, reposRes] = await Promise.all([
+      fetch('https://api.github.com/users/tls-client'),
+      fetch('https://api.github.com/users/tls-client/repos?per_page=100')
+    ]);
+    const user  = await userRes.json();
+    const repos = await reposRes.json();
+
+    document.getElementById('ghFollowers').textContent = user.followers ?? '—';
+    document.getElementById('ghRepos').textContent     = user.public_repos ?? '—';
+
+    const stars = Array.isArray(repos)
+      ? repos.reduce((sum, r) => sum + r.stargazers_count, 0)
+      : 0;
+    document.getElementById('ghStars').textContent = stars;
+  } catch(e) {}
+}
+
+async function loadCommitGraph() {
+  try {
+    const res   = await fetch('https://api.github.com/users/tls-client/repos?per_page=100');
+    const repos = await res.json();
+    if (!Array.isArray(repos)) return;
+
+    const days = 30;
+    const counts = new Array(days).fill(0);
+    const now = Date.now();
+
+    await Promise.all(repos.slice(0, 10).map(async repo => {
+      try {
+        const r = await fetch(`https://api.github.com/repos/tls-client/${repo.name}/commits?per_page=100&since=${new Date(now - days*86400000).toISOString()}`);
+        const commits = await r.json();
+        if (!Array.isArray(commits)) return;
+        commits.forEach(c => {
+          const date = new Date(c.commit.author.date);
+          const diffDays = Math.floor((now - date.getTime()) / 86400000);
+          if (diffDays >= 0 && diffDays < days) counts[days - 1 - diffDays]++;
+        });
+      } catch(e) {}
+    }));
+
+    const total = counts.reduce((a,b) => a+b, 0);
+    const maxDay = Math.max(...counts);
+    const lastDay = counts[counts.length - 1];
+
+    document.getElementById('ghCommitsSub').textContent = `Last ${days} days · Max/day ${maxDay}`;
+    document.getElementById('ghTotalCommits').textContent = `${total} commits total`;
+    document.getElementById('ghLastDay').textContent = `Last day ${lastDay} commits`;
+
+    drawCommitChart(counts);
+  } catch(e) {}
+}
+
+function drawCommitChart(counts) {
+  const canvas = document.getElementById('commitChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.offsetWidth || 700;
+  const h = 100;
+  canvas.width  = w;
+  canvas.height = h;
+
+  const max = Math.max(...counts, 1);
+  const pad = 4;
+  const step = (w - pad * 2) / (counts.length - 1);
+
+  ctx.clearRect(0, 0, w, h);
+
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(41,212,120,0.35)');
+  grad.addColorStop(1, 'rgba(41,212,120,0)');
+
+  ctx.beginPath();
+  counts.forEach((v, i) => {
+    const x = pad + i * step;
+    const y = h - pad - (v / max) * (h - pad * 2);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.lineTo(pad + (counts.length-1) * step, h);
+  ctx.lineTo(pad, h);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  ctx.beginPath();
+  counts.forEach((v, i) => {
+    const x = pad + i * step;
+    const y = h - pad - (v / max) * (h - pad * 2);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#29d478';
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+}
+
+loadGitHubStats();
+loadCommitGraph();
