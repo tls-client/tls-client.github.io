@@ -81,7 +81,6 @@ async function loadArticles() {
       '<p style="color:var(--text2);font-size:14px;">記事を読み込めませんでした。</p>';
   }
 }
-
 function renderProjects(projects) {
   const grid = document.getElementById('projectGrid');
   if (!projects.length) {
@@ -115,8 +114,7 @@ function renderArticles(articles) {
     return;
   }
   grid.innerHTML = articles.map(a => {
-    const href = a.url || `https://tls-client.github.io/#article/${encodeURIComponent(a.title)}`;
-    return `<a class="article-card article-card--link" href="${esc(href)}" target="_blank" rel="noopener">
+    return `<a class="article-card article-card--link" href="#article/${a.id}">
       <div class="thumb">
         ${a.thumbnail
           ? `<img src="${esc(a.thumbnail)}" alt="${esc(a.title)}" loading="lazy">`
@@ -258,7 +256,42 @@ const fadeObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
 loadProjects();
-loadArticles();
+loadArticles().then(() => router());
+
+/* ===== HASH ROUTER ===== */
+const articleOverlay = document.getElementById('articleOverlay');
+const articleClose   = document.getElementById('articleClose');
+
+function router() {
+  const hash = location.hash;
+  const m = hash.match(/^#article\/(\d+)$/);
+  if (m) {
+    const id = parseInt(m[1]);
+    const article = allArticles.find(a => a.id === id);
+    if (article) { openArticle(article); return; }
+  }
+  closeArticle();
+}
+
+function openArticle(a) {
+  const el = document.getElementById('articleOverlay');
+  document.getElementById('articleTitle').textContent   = a.title;
+  document.getElementById('articleDate').textContent    = a.date ? formatDate(a.date) : '';
+  document.getElementById('articleTags').innerHTML      = (a.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('');
+  document.getElementById('articleBody').innerHTML      = a.content || `<p>${esc(a.description)}</p>`;
+  el.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  el.scrollTop = 0;
+}
+
+function closeArticle() {
+  articleOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+window.addEventListener('hashchange', router);
+articleClose.addEventListener('click', () => { history.pushState('', '', ' '); closeArticle(); });
+articleOverlay.addEventListener('click', e => { if (e.target === articleOverlay) { history.pushState('', '', ' '); closeArticle(); } });
 
 const archiveToggle = document.getElementById('archiveToggle');
 const archivePanel  = document.getElementById('archivePanel');
